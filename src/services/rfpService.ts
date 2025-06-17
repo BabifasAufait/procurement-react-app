@@ -41,3 +41,30 @@ export const getAllRfpsByFilterAsync = async(filterDto:IFilterDto)=>{
         console.log(err);
     }
 }
+
+
+export const getAllProposalsByFilterAsync = async(filterDto:IFilterDto)=>{
+    try{
+        const response = await axios.post(`${Urls.defaultUrl}/api/Rfps/GetAllRfpProposalsAsync`,filterDto,{
+            headers:{
+                Authorization:`Bearer ${getUserToken()}`
+            }
+        })
+        return response.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const updateProposalStatusAsync = async(proposalId : number,status : "Pending" | "Approved" | "Rejected")=>{
+    try{
+        const response = await axios.put(`${Urls.defaultUrl}/api/Rfps/UpdateProposalStatus?proposalId=${proposalId}&status=${status}`,null,{
+            headers:{
+                Authorization:`Bearer ${getUserToken()}`
+            }
+        })
+        return response.data;
+    }catch(err){
+        console.log(err);
+    }
+}

@@ -9,6 +9,7 @@ import Table from '../../basic_components/Table';
 import { IFilterDto } from '../../../types/commonTypes';
 import Modal from '../../basic_components/Modal';
 import ProposalSubmissionModal from './ProposalSubmissionModal';
+import { getAllProposalsByFilterAsync } from '../../../services/rfpService';
 
 interface User {
     name: string;
@@ -34,30 +35,36 @@ interface IRfpDetailRight {
 const RfpDetailRight: React.FC<IRfpDetailRight> = ({ rfp, trigger }) => {
 
     const [isModalOpenItem, setIsModalOpenItem] = useState<any>(null);
+    const [vendorProposals, setVendorProposals] = useState<any[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [activeTab, setActiveTab] = useState("Proposals");
     const tabs = ["Proposals", "Clarifications"];
 
-    const setupTabsAsync = async()=>{
-        try{
-            
-        }catch(err){
+    const setupTabsAsync = async () => {
+        try {
+            if (activeTab == "Proposals") {
+                const filtered_proposals = await getAllProposalsByFilterAsync(filter);
+                setVendorProposals(filtered_proposals);
+            }else if(activeTab == "Clarifications"){
+
+            }
+        } catch (err) {
 
         }
     }
 
-    useEffect(()=>{
-
-    },[activeTab])
+    useEffect(() => {
+setupTabsAsync();
+    }, [activeTab])
 
     const [filter, setFilter] = useState<IFilterDto>({
-        fields: [],
+        fields: [{columnName:"RfpId", value:rfp?.id ?? 0}],
         globalSearch: "",
         sortColumn: "CreatedAt",
-        sortDirection: "DSCE"
+        sortDirection: "DESC"
     })
-    const proposalTableColumns = ["id", "vendorName", "bidAmount", "bidValidity"]
-    const columnLabels = { id: "ID", vendorName: "Vendor Name", bidAmount: "Bid Amount", bidValidity: "Bid Validity" }
+    const proposalTableColumns = ["vendorCode", "vendorName", "bidAmount", "bidValidity"]
+    const columnLabels = { vendorCode: "ID", vendorName: "Vendor Name", bidAmount: "Bid Amount", bidValidity: "Bid Validity" }
 
 
     return (
@@ -110,7 +117,7 @@ const RfpDetailRight: React.FC<IRfpDetailRight> = ({ rfp, trigger }) => {
                         {activeTab === "Proposals" && (
                             <Table
                                 columnLabels={columnLabels}
-                                items={[]}
+                                items={vendorProposals}
                                 columns={proposalTableColumns}
                                 title="Proposals"
                                 type="proposal"
@@ -127,7 +134,7 @@ const RfpDetailRight: React.FC<IRfpDetailRight> = ({ rfp, trigger }) => {
                     </div>
                 </div>
             </div>
-            <Modal content={<ProposalSubmissionModal proposal={isModalOpenItem} trigger={()=>{}}/>} isOpen={true} onClose={()=>setIsModalOpenItem(null)} modalPosition='end' width="w-full md:w-2/6"/> 
+            <Modal content={<ProposalSubmissionModal proposal={isModalOpenItem} trigger={() => {setIsModalOpenItem(null) }} />} isOpen={isModalOpenItem} onClose={() => setIsModalOpenItem(null)} modalPosition='end' width="w-full md:w-2/5" />
         </>)
 };
 

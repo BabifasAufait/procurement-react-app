@@ -4,35 +4,39 @@ import { IFilterDto } from "../../types/commonTypes";
 // import Cookies from "js-cookie";
 import SortModal from "../../components/basic_components/SortModal";
 import { rfp_column_labels, capex_sorting_fields } from "../../utils/constants";
-import "./requestPage.css";
+import "./vendorPage.css";
 import CreateButton from "../../components/buttons/CreateButton";
 import PageLoader from "../../components/basic_components/PageLoader";
 // import { convertCurrencyLabel } from "../../utils/common";
 import { useNavigate } from "react-router-dom";
 import { getAllRfpsByFilterAsync } from "../../services/rfpService";
+import { getAllVendorsAsync } from "../../services/vendorService";
 
 const tempfilter = {
-  fields: [],
-  pageNo: 0,
-  pageSize: 0,
-  sortColumn: "CreatedAt",
-  sortDirection: "DESC"
+  nameFilter:""
 }
 
 function VendorPage() {
-  const commonColumns=['tenderNumber', 'rfpTitle', 'buyerName', 'bidValue', 'isOpen']
+  const commonColumns=['vendorCode', 'organisationName', 'ownerName', "statusName"]
+  const vendor_column_labels = {
+    vendorCode: 'ID',
+    organisationName: 'Vendor Name',
+    ownerName: 'Owner Name',
+    statusName: 'Status',
+};
   const [columns,setColumns] = useState(commonColumns);
   const [trigger, setTrigger] = useState(false);
   // const [hideDepartment,setHideDepartment]= useState(true);
   // const [hideStatus,setHideStatus]= useState(false);
-  const [rfpRequests, setRfpRequests] = useState<any[]>([]);
+  const [vendors, setVendors] = useState<any[]>([]);
   // const [filterModalOpen, setFilterModal] = useState<boolean>(false);
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [tableName, setTableName] = useState("");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [defaultFilter,setDefaultFilter] = useState<IFilterDto>(tempfilter)
-  const [filter, setFilter] = useState<IFilterDto>(defaultFilter);
+
+  const [filter, setFilter] = useState<any>(tempfilter);
+
   const [showLoader] = useState<boolean>(false);
   const [statusFilter, setStatusFilter] = useState<string>("All requests");
   const navigate = useNavigate();
@@ -54,18 +58,16 @@ function VendorPage() {
   //   };
   // }, [isModalOpen]);
 
-  const onCreateRequest = () => {
-    navigate("/rfps/create-rfp")
-  }
+ 
 
-  const getCapexRequestFilter = async (filterDto: IFilterDto = filter) => {
+  const getAllVendors = async (filterDto = filter) => {
     try {
       //setShowLoader(true);
-      let capex_request_responese:any = await getAllRfpsByFilterAsync(filterDto)
+      let vendors_list:any = await getAllVendorsAsync(filterDto)
       //setShowLoader(false);
       setTotalCount(0)
-      // let data:any = capex_request_responese.data.map((r:any)=>({...r,estimatedBudgetLabel:`${convertCurrencyLabel(r.currency as string)}${r.estimatedBudget?.toFixed(2)}`}));;
-      setRfpRequests(capex_request_responese);
+      const modified_vendor_list = vendors_list.map((item:any)=>({...item,ownerName:`${item?.firstName} ${item?.lastName}`}))
+      setVendors(modified_vendor_list);
       setTrigger(false);
     } catch (err) {
     }
@@ -96,10 +98,9 @@ function VendorPage() {
         // setHideStatus(true)
         // filterdata = { ...filterdata, fields: [{ columnName: "status", operator: "=", value: "draft" }, { columnName: "createdBy", value: Cookies.get("userId") as string }] }
       }
-      setDefaultFilter(filterdata);
       setTableName(tab);
       setFilter(filterdata);
-      getCapexRequestFilter(filterdata);
+      getAllVendors(filterdata);
       setStatusFilter(tab);
     }
   }
@@ -111,14 +112,14 @@ function VendorPage() {
   const handleSearch = async () => {
     const updatedFilter = {
       ...filter,
-      globalSearch: searchQuery
+      nameFilter: searchQuery
     };
-    await getCapexRequestFilter(updatedFilter);
+    await getAllVendors(updatedFilter);
     console.log(searchQuery, "searchquery after fetch")
   };
 
   useEffect(() => {
-    getCapexRequestFilter();
+    getAllVendors();
   }, [filter, trigger]);
 
   const tabs = ["All requests", "My requests", "Draft requests"];
@@ -130,7 +131,7 @@ function VendorPage() {
           <div className="flex items-center justify-between">
             <div className="mb-2 text-xl font-bold">Requests</div>
             <div>
-              <CreateButton name="Create request" onClick={onCreateRequest} />
+              {/* <CreateButton name="Create request" onClick={onCreateRequest} /> */}
               
             </div>
 
@@ -162,7 +163,7 @@ function VendorPage() {
 
 
           <div className="ml-[10px]">
-            <Table filter={filter} setFilter={setFilter} title={tableName || "All requests"} setIsSortModalOpen={setIsSortModalOpen} columns={columns} items={rfpRequests} columnLabels={rfp_column_labels} setIsFilterModalOpen={()=>{}} setSearchQuery={setSearchQuery} totalCount={totalCount} type="rfps" rowNavigationPath="rfps" trigger={() => setTrigger(true)} />
+            <Table filter={filter} setFilter={setFilter} title={tableName || "Vendors"} setIsSortModalOpen={setIsSortModalOpen} columns={columns} items={vendors} columnLabels={vendor_column_labels} setIsFilterModalOpen={()=>{}} setSearchQuery={setSearchQuery} totalCount={totalCount} type="vendors" rowNavigationPath="vendors" trigger={() => setTrigger(true)} />
             {isSortModalOpen && <SortModal filter={filter} columns={capex_sorting_fields} setFilter={setFilter} setIsSortModalOpen={setIsSortModalOpen} />}
           </div></> : <PageLoader />}
       </div>

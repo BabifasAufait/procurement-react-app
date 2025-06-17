@@ -3,7 +3,7 @@ import { projectStatuses, milestoneStatuses, rfpStatuses } from '../../utils/con
 
 interface ShowStatusProps {
   status: string;
-  type: 'proposal' | 'milestone' | 'rfps' ;
+  type: 'proposal' | 'vendors' | 'rfps' ;
 }
 
 const ShowStatus: React.FC<ShowStatusProps> = ({ status, type }) => {
@@ -34,7 +34,7 @@ const ShowStatus: React.FC<ShowStatusProps> = ({ status, type }) => {
   const getStatusLabel = () => {
     const statusList =
       type === 'proposal' ? projectStatuses :
-      type === 'milestone' ? milestoneStatuses :
+      type === 'vendors' ? milestoneStatuses :
       rfpStatuses; // default to requestStatuses
 
     return statusList.find((e:any) => e.value === status)?.label || status;

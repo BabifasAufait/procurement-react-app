@@ -27,7 +27,7 @@ interface TableProps extends Partial<IDot> {
   setIsModalOpenItem?: React.Dispatch<React.SetStateAction<any>>;
   totalCount: number;
   rowNavigationPath?: string;
-  type: "proposal" | "rfps";
+  type: "proposal" | "rfps" | "vendors";
 }
 
 const Table: React.FC<TableProps> = ({
@@ -132,6 +132,8 @@ const Table: React.FC<TableProps> = ({
     } else if (type === "proposal") {
       //navigate(`/${rowNavigationPath}/${item.id}`);
       setIsModalOpenItem && setIsModalOpenItem(item);
+    } else if(type == "vendors"){
+      navigate(`/${rowNavigationPath}/${item.id}`);
     }
   };
 
