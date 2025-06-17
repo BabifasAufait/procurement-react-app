@@ -307,9 +307,9 @@ const RolesPermissions: React.FC = () => {
 
     return (
         <div className="bg-bgBlue">
-            <div className="pr-8 py-6 border-gray-200 flex justify-between items-center">
-                <h2 className="text-lg font-semibold"></h2>
-                <CreateButton name='Add role' onClick={() => setIsCreateModalOpen(true)} />
+            <div className="pr-8 py-8 border-gray-200 flex justify-between items-center">
+                {/* <h2 className="text-lg font-semibold"></h2>
+                <CreateButton name='Add role' onClick={() => setIsCreateModalOpen(true)} /> */}
             </div>
 
             {/* {!selectedRole && <div className="px-8">
