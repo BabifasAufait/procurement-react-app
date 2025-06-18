@@ -16,6 +16,7 @@ import { getAllCountryCodes } from "../services/commonService";
 import RequestPage from '../pages/request_page/RequestPage';
 import RequestDetailPage from '../pages/rfp_detail/RfpDetailPage';
 import VendorPage from '../pages/vendor_page/VendorPage';
+import VendorDetailPage from '../pages/vendor_detail/VendorDetailPage';
 
 interface procurementContextProp {
   countryCodes: ICountryCode[] | null;
@@ -129,6 +130,7 @@ const RouteComponent: React.FC = () => {
                     <Route path="/rfps/create-rfp" element={<RfpRequestFormComponent />} />
                     <Route path="/rfps/edit-rfp/:id" element={<RfpRequestFormComponent />} />
                     <Route path="/vendors" element={<VendorPage />} />
+                    <Route path="/vendors/:id" element={<VendorDetailPage />} />
                     <Route path="/settings/user-managment" element={<SettingsPage />} />
                     <Route path="/settings/department-managment" element={<SettingsPage />} />
                     <Route path="/settings/workflow-managment" element={<SettingsPage />} />
