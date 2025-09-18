@@ -17,6 +17,20 @@ export const createOrUpdateRfpAsync = async(data:any)=>{
     }
 }
 
+export const sendFinalBidRequestAsync = async(rfpId:number)=>{
+
+    try{
+        const response = await axios.post(`${Urls.defaultUrl}/api/Rfps/SentForFinalBidding?rfpId=${rfpId}`,null,{
+            headers:{
+                Authorization:`Bearer ${getUserToken()}`
+            }
+        })
+        return response.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
 export const publishRfpAsync = async(rfpId:number)=>{
     try{
         const response = await axios.post(`${Urls.defaultUrl}/api/Rfps/RfpPublish?rfpId=${rfpId}`,null,{

@@ -11,71 +11,16 @@ import { getUserCredentials } from '../../../utils/common';
 import StepIndicator from './rfp_approve-reject_right_component/StepIndicator';
 import StepCard from './rfp_approve-reject_right_component/StepCard';
 import { DocumentIconByExtension, GeneralDetailIcon } from '../../../utils/Icons';
-import { getAllEvaluationReportsAsync } from '../../../services/rfpService';
+import { getAllEvaluationReportsAsync, sendFinalBidRequestAsync } from '../../../services/rfpService';
 import Modal from '../../basic_components/Modal';
 import RfpDecisionForm from '../../../pages/rfp_decision_form/RfpDecisionForm';
-
+import { Button } from 'antd';
+import ViewTable from '../../basic_components/ViewTable';
 
 interface IRfpDetailRight {
     rfpDetails: any
     trigger: () => void
 }
-
-
-// const tempflows: IStep[] = [{
-//     id: 0,
-//     photo: userPhoto,
-//     approvalRequestId: 0,
-//     approverId: 1,
-//     approverRole: "admin",
-//     approverEmail: "admin@123",
-//     approverName: "Akkib",
-//     current: true,
-//     stepOrder: 1,
-//     status: "pending",
-//     actionDate: "2025-05-01",
-//     comments: ""
-// },
-// {
-//     id: 0,
-//     photo: userPhoto,
-//     approvalRequestId: 0,
-//     approverId: 1,
-//     approverRole: "admin",
-//     approverEmail: "admin@123",
-//     approverName: "Akkib",
-//     current: false,
-//     stepOrder: 2,
-//     status: "pending",
-//     actionDate: "2025-05-01",
-//     comments: ""
-// }, {
-//     id: 0,
-//     approvalRequestId: 0,
-//     photo: userPhoto,
-//     approverRole: "admin",
-//     approverName: "Akkib",
-//     approverId: 1,
-//     approverEmail: "admin@123",
-//     stepOrder: 3,
-//     current: false,
-//     status: "pending",
-//     actionDate: "2025-05-01",
-//     comments: ""
-// }, {
-//     id: 0,
-//     approvalRequestId: 0,
-//     photo: userPhoto,
-//     approverRole: "admin",
-//     approverEmail: "admin@123",
-//     approverName: "Akkib",
-//     approverId: 1,
-//     stepOrder: 4,
-//     current: false,
-//     status: "pending",
-//     actionDate: "2025-05-01",
-//     comments: ""
-// }]
 
 const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
     const [stepsList, setStepsList] = useState<any[]>([])
@@ -101,7 +46,6 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
 
     useEffect(() => {
         setupRfpProposalApproveReject()
-        trigger && trigger()
     }, [rfpDetails.id])
 
     return (
@@ -118,7 +62,7 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
                 >
                     <div className="pr-[55px] group relative">
                         <span className="font-bold text-[16px] mb-[17.5px] flex"><span>Decission Paper</span></span>
-                        <div className='flex flex-col' onClick={()=>setShowModal(true)}>
+                        <div className='flex flex-col' onClick={() => setShowModal(true)}>
                             <p className='font-bold text-blue-600 cursor-pointer'>{"View >"}</p>
                         </div>
                     </div>
@@ -132,52 +76,70 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
                     </div>
                 </>}
 
-                <div className="w-full">
-                    {stepsList.map((step, index) => {
-                        // Find the index of the current step
+                {rfpDetails?.finalBidSubmitted == null && <div className='w-full flex justify-end'>
+                    <Button type='primary' onClick={() => {
+                        (async () => {
+                            await sendFinalBidRequestAsync(rfpDetails?.id);
+                            trigger && trigger()
+                        })();
+                    }}>Send Final Bid Request</Button>
+                </div>}
+                {/* <div className="w-full">
 
-                        // Find the latest step with currentUser that comes after stepCurrent
-                        let currentIndex = -1;
-                        for (let i = 0; i < stepsList.length; i++) {
-                            if (stepsList[i].current) {
-                                currentIndex = i;
+
+                    <ViewTable columns={[""]}/>
+
+                </div> */}
+                {(rfpDetails?.finalBidSubmitted == true || rfpDetails?.finalBidSubmitted == null) ? <>
+                    <div className="w-full">
+                        {stepsList.map((step, index) => {
+                            // Find the index of the current step
+
+                            // Find the latest step with currentUser that comes after stepCurrent
+                            let currentIndex = -1;
+                            for (let i = 0; i < stepsList.length; i++) {
+                                if (stepsList[i].current) {
+                                    currentIndex = i;
+                                }
                             }
-                        }
 
-                        // Show all steps up to (and including) the currentIndex in StepCard
-                        if (index <= currentIndex) {
+                            // Show all steps up to (and including) the currentIndex in StepCard
+                            if (index <= currentIndex) {
+                                return (
+                                    <StepCard
+                                        flowType='rfpaward'
+                                        key={index}
+                                        step={step || []}
+                                        trigger={() => {
+                                            setupRfpProposalApproveReject();
+                                        }}
+                                    />
+                                );
+                            }
+
+                            // Show future steps in a plain div
                             return (
-                                <StepCard
-                                    flowType='rfpaward'
-                                    key={index}
-                                    step={step || []}
-                                    trigger={() => {
-                                        setupRfpProposalApproveReject();
-                                    }}
-                                />
+                                (rfpDetails.status == 1 || rfpDetails.status == 2) && (rfpDetails.createdBy == getUserCredentials().userId) ?
+                                    <StepCard
+                                        flowType="rfpaward"
+                                        key={index}
+                                        step={step || []}
+                                        trigger={() => {
+                                            setupRfpProposalApproveReject();
+                                        }}
+                                    /> :
+                                    <div key={index} className="text-gray-500 mb-4 bg-white px-2 py-2 rounded-md flex-col items-center justify-center">
+                                        {step.approverRole} <p className='text-xs'>{step.approverName} | {step.approverEmail}</p>
+                                    </div>
                             );
-                        }
-
-                        // Show future steps in a plain div
-                        return (
-                            (rfpDetails.status == 1 || rfpDetails.status == 2) && (rfpDetails.createdBy == getUserCredentials().userId) ?
-                                <StepCard
-                                    flowType="rfpaward"
-                                    key={index}
-                                    step={step || []}
-                                    trigger={() => {
-                                        setupRfpProposalApproveReject();
-                                    }}
-                                /> :
-                                <div key={index} className="text-gray-500 mb-4 bg-white px-2 py-2 rounded-md flex-col items-center justify-center">
-                                    {step.approverRole} <p className='text-xs'>{step.approverName} | {step.approverEmail}</p>
-                                </div>
-                        );
-                    })}
-                </div>
+                        })}
+                    </div></> :
+                    <div className="w-full">
+                        The RFP Under final bid submission
+                    </div>}
             </div>
             <Modal width='4/4' title='Decision Paper for Award' contentPosition="center" isOpen={showModal}
-                content={<RfpDecisionForm type={"view"} rfpIdFromParent={rfpDetails.id}/>}
+                content={<RfpDecisionForm type={"view"} rfpIdFromParent={rfpDetails.id} />}
                 onClose={() => { setShowModal(prev => !prev) }}
             />
         </>

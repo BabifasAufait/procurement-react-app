@@ -42,7 +42,7 @@ interface RfpDecisionFormType {
 export default function RfpDecisionForm({ type, rfpIdFromParent }: RfpDecisionFormType = { type: "create", rfpIdFromParent: 0 }) {
     const [form] = Form.useForm();
     const { rfpId } = useParams();
-    const [selectedRfp, setSelectedRfp] = useState<number>();
+    const [selectedRfp, setSelectedRfp] = useState<number>(0);
     const [initialData, setInitialData] = useState<any>({
         decisionType: "Decision Paper for Award"
     });
@@ -53,7 +53,6 @@ export default function RfpDecisionForm({ type, rfpIdFromParent }: RfpDecisionFo
         proposals: []
     });
     const navigate = useNavigate();
-
     const [techFiles, setTechFiles] = useState<UploadFile[]>([]);
     const [commFiles, setCommFiles] = useState<UploadFile[]>([]);
 
@@ -73,6 +72,10 @@ export default function RfpDecisionForm({ type, rfpIdFromParent }: RfpDecisionFo
             for (let x in payload) {
                 formFile.append(x, payload[x]);
             }
+            payload.vendorRfpProposalIds.forEach((id: any,index:number) => {
+                formFile.append(`vendorProposals[${index}].VendorRfpProposalId`, id);
+            });
+
             let i = 0;
             // Append technical evaluation files
             techFiles.forEach((file) => {
@@ -102,14 +105,14 @@ export default function RfpDecisionForm({ type, rfpIdFromParent }: RfpDecisionFo
         }
     };
 
-    const proposalsSetup = async () => {
+    const proposalsSetup = async (rfpId: number = selectedRfp) => {
         try {
             const proposals = await getAllProposalsByFilterAsync(
                 {
                     pageNo: 0,
                     pageSize: 0,
                     fields: [
-                        { columnName: "rfpId", value: selectedRfp }
+                        { columnName: "rfpId", value: rfpId }
                     ],
                     sortColumn: "CreatedAt",
                     sortDirection: "ASC"
@@ -155,7 +158,8 @@ export default function RfpDecisionForm({ type, rfpIdFromParent }: RfpDecisionFo
 
             if (type == "edit" || type == "view") {
                 const decission_paper = await getRfpDecisionPaperByRfpIdAsync((type == "view" && rfpIdFromParent) ? rfpIdFromParent : Number(rfpId));
-                setInitialData((prev: any) => ({ ...prev, ...decission_paper }));
+                await proposalsSetup(rfpIdFromParent || 0);
+                setInitialData((prev: any) => ({ ...prev, ...decission_paper, vendorRfpProposalIds: decission_paper?.vendorProposalsList?.map((p: any) => p?.vendorRfpProposalId) }));
             }
 
         } catch (err) {
@@ -183,7 +187,7 @@ export default function RfpDecisionForm({ type, rfpIdFromParent }: RfpDecisionFo
         if (values.closedOn) values.closedOn = dayjs(values.closedOn);
         if (values.openedOn) values.openedOn = dayjs(values.openedOn);
         form.setFieldsValue(values);
-    }, [initialData, form])
+    }, [initialData, form, masterDatas])
 
     return (
         <div>
@@ -229,25 +233,34 @@ export default function RfpDecisionForm({ type, rfpIdFromParent }: RfpDecisionFo
                         {/* Proposal */}
                         <Form.Item
                             label="Proposal from vendor"
-                            name="vendorRfpProposalId"
-                            rules={[{ required: true, message: "Please select the proposal" }]}
+                            name="vendorRfpProposalIds"
+                            rules={[{ required: true, message: "Please select at least one proposal" }]}
                         >
-                            <Select disabled={type == "view"} placeholder="Select the proposal" showSearch optionFilterProp="labelName" allowClear options={
-                                masterDatas.proposals.map((p: any) => ({
-                                    value: p.id,
-                                    labelName: p.vendorName,
-                                    label: p.vendorName
-                                    // label: (
-                                    //     <div>
-                                    //         <p className="font-bold">{p.vendorName}</p>
-                                    //         <p>
-                                    //             <span>Bid amount: </span>{p.bidAmount}
-                                    //         </p>
-                                    //     </div>
-                                    // ),p.
-                                }))}>
-
-                            </Select>
+                            <Select 
+                                mode="multiple"
+                                disabled={type == "view"} 
+                                placeholder="Select proposals" 
+                                showSearch 
+                                optionFilterProp="labelName" 
+                                allowClear 
+                                options={
+                                    masterDatas.proposals.map((p: any) => {
+                                        console.log(p, "p");
+                                        return({
+                                        value: p.id,
+                                        labelName: p.vendorName,
+                                        label: p.vendorName
+                                        // label: (
+                                        //     <div>
+                                        //         <p className="font-bold">{p.vendorName}</p>
+                                        //         <p>
+                                        //             <span>Bid amount: </span>{p.bidAmount}
+                                        //         </p>
+                                        //     </div>
+                                        // ),p.
+                                    })})
+                                }
+                            />
                         </Form.Item>
 
                         {/* Floated on */}
