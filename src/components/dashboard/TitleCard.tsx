@@ -1,4 +1,4 @@
-import CreateButton from "../buttons/CreateButton";
+import CreateButton, { PublishButton } from "../buttons/CreateButton";
 import { useNavigate } from "react-router-dom";
 import { getUserCredentials } from "../../utils/common";
 import { useEffect } from "react";
@@ -9,6 +9,9 @@ const TitleCard = ({ trigger }: { trigger: () => void }) => {
         navigate("/rfps/create-rfp")
     }
 
+    const onPublishRfps = () => {
+        navigate("/rfps/publish-rfps")
+    }
 
     useEffect(()=>{
         trigger && trigger();
@@ -37,6 +40,7 @@ const TitleCard = ({ trigger }: { trigger: () => void }) => {
                             <p className="text-body-small text-subtle">Start a new RFP request</p>
                         </div>
                         <CreateButton name="Create RFP" onClick={onCreateRequest} />
+                        <PublishButton name="Publish RFPs" onClick={onPublishRfps} />
                     </div>
                 </div>
             </div>
@@ -46,3 +50,4 @@ const TitleCard = ({ trigger }: { trigger: () => void }) => {
 }
 
 export default TitleCard
+
