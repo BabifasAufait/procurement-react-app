@@ -16,6 +16,7 @@ import RequestPage from '../pages/request_page/RequestPage';
 import RequestDetailPage from '../pages/rfp_detail/RfpDetailPage';
 import VendorPage from '../pages/vendor_page/VendorPage';
 import VendorDetailPage from '../pages/vendor_detail/VendorDetailPage';
+import RfpPublishPage from '../pages/rfp_publish/RfpPublishPage';
 import UserProfilePage from '../pages/profile/UserProfilePage';
 import RfpDecisionForm from '../pages/rfp_decision_form/RfpDecisionForm';
 
@@ -127,6 +128,7 @@ const RouteComponent: React.FC = () => {
                   <Routes>
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/rfps" element={<RequestPage />} />
+                    <Route path="/rfps/publish-rfps" element={<RfpPublishPage />} />
                     <Route path="/rfps/:id" element={<RequestDetailPage />} />
                     <Route path="/rfps/create-rfp" element={<RfpRequestFormComponent />} />
                     <Route path="/rfps/edit-rfp/:id" element={<RfpRequestFormComponent type='edit' />} />
