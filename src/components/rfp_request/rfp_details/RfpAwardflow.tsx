@@ -87,7 +87,7 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
                 {/* <div className="w-full">
 
 
-                    <ViewTable columns={[""]}/>
+                    <ViewTable columns={[""]} />
 
                 </div> */}
                 {(rfpDetails?.finalBidSubmitted == true || rfpDetails?.finalBidSubmitted == null) ? <>
