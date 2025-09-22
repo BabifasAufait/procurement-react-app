@@ -11,7 +11,7 @@ import { getUserCredentials } from '../../../utils/common';
 import StepIndicator from './rfp_approve-reject_right_component/StepIndicator';
 import StepCard from './rfp_approve-reject_right_component/StepCard';
 import { DocumentIconByExtension, GeneralDetailIcon } from '../../../utils/Icons';
-import { getAllEvaluationReportsAsync, sendFinalBidRequestAsync } from '../../../services/rfpService';
+import { getAllEvaluationReportsAsync, getAllSelectedProposalsByRfpIdAsync, sendFinalBidRequestAsync } from '../../../services/rfpService';
 import Modal from '../../basic_components/Modal';
 import RfpDecisionForm from '../../../pages/rfp_decision_form/RfpDecisionForm';
 import { Button } from 'antd';
@@ -31,16 +31,19 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
         //     filePath: "sdhgfdsjhfdsk.png"
         // }
     ]);
-
+    const [selectedProposals,setSelectedProposals] = useState<any[]>([]);
 
     const setupRfpProposalApproveReject = async () => {
         const response: any[] = await getRpfApprovalFlowsByIdAsync(rfpDetails?.id, "rfpaward");
         const formatedSteps = response.map((item: any, i) => ({ ...item, current: (getUserCredentials().userId == item.approverId && (i == 0 || response[i - 1].status == 1)), status: item.status == 0 ? "pending" : item.status == 1 ? "approved" : "rejected" }));
         setStepsList(formatedSteps);
-        if (rfpDetails?.status == 9) {
+        if (rfpDetails?.status == 9 || rfpDetails?.status == 10) {
             const evaluationReports = await getAllEvaluationReportsAsync(Number(rfpDetails?.id || "0"));
             const evalutionDocumentMapped = evaluationReports.map((d: any) => ({ documentUrl: d.filePath, documentName: d.fileTitle }));
             setEvaluationDocuments(evalutionDocumentMapped);
+            const selectedProposalsList = await getAllSelectedProposalsByRfpIdAsync(rfpDetails?.id || 0);
+            console.log(selectedProposalsList,"selectedProposalsList--------------selectedProposalsList")
+            setSelectedProposals(selectedProposalsList);
         }
     }
 
@@ -71,10 +74,46 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
                     <span className="font-bold text-[16px] mb-[17.5px] flex"><span>Evaluation Report</span></span>
                     <div className='flex flex-col'>
                         {
-                            evaluationDocuments.map((d: any) => (<span><a className="text-[13px] flex items-end mb-5" href={d.documentUrl ? d.documentUrl : d.document} target="blank" download={d.documentName} ><DocumentIconByExtension className="w-[25px] h-[25px]" filePath={d.documentUrl} /><p className="pl-[4px]" style={{ color: "blue", textDecoration: "underline" }}>{d.documentName}</p></a><label htmlFor="upload-eval-file"><span className='px-3 py-2 bg-white rounded-md border'>Reupload</span></label></span>))
+                            evaluationDocuments.map((d: any) => (<span><a className="text-[13px] flex items-end mb-5" href={d.documentUrl ? d.documentUrl : d.document} target="blank" download={d.documentName} ><DocumentIconByExtension className="w-[25px] h-[25px]" filePath={d.documentUrl} /><p className="pl-[4px]" style={{ color: "blue", textDecoration: "underline" }}>{d.documentName}</p></a><label htmlFor="upload-eval-file"></label></span>))
                         }
                     </div>
                 </>}
+
+                <div className="w-full">
+
+                    {selectedProposals.length > 0 && (
+                        <div className="space-y-4">
+                            <span className="font-bold text-[16px] mb-[8px] flex"><span>Vendor Proposals</span></span>
+                            <ViewTable
+                                columns={["vendor", "bidAmount"]}
+                                columnLabels={{ vendor: "Vendor", bidAmount: "Bid Amount" }}
+                                items={selectedProposals.map((p: any) => ({
+                                    id: p.id,
+                                    vendor: p.vendorName || `Vendor #${p.vendorId}`,
+                                    bidAmount: p.bidAmount,
+                                }))}
+                            />
+
+                            {selectedProposals.map((p: any) => (
+                                <div key={p.id} className="space-y-2">
+                                    <span className="font-bold text-[14px] flex"><span>Bid split - {p.vendorName || `Vendor #${p.vendorId}`}</span></span>
+                                    <ViewTable
+                                        columns={["itemCode", "itemName", "quantity", "amount"]}
+                                        columnLabels={{ itemCode: "Item Code", itemName: "Item Name", quantity: "Qty", amount: "Amount" }}
+                                        items={(p.vendorRfpProposalItems || []).map((it: any) => ({
+                                            id: it.id,
+                                            itemCode: it.rfpItem?.itemCode,
+                                            itemName: it.rfpItem?.itemName,
+                                            quantity: it.rfpItem?.quantity,
+                                            amount: it.amount,
+                                        }))}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                </div>
 
                 {rfpDetails?.finalBidSubmitted == null && <div className='w-full flex justify-end'>
                     <Button type='primary' onClick={() => {
@@ -84,12 +123,7 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
                         })();
                     }}>Send Final Bid Request</Button>
                 </div>}
-                {/* <div className="w-full">
-
-
-                    <ViewTable columns={[""]} />
-
-                </div> */}
+                
                 {(rfpDetails?.finalBidSubmitted == true || rfpDetails?.finalBidSubmitted == null) ? <>
                     <div className="w-full">
                         {stepsList.map((step, index) => {

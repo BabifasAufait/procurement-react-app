@@ -114,9 +114,9 @@ export const getUserPendingApprovalsAsync = async ()=>{
     }
 }
 
-export const approveVendorAsync= async (data:{stepId:number,approverEmail:string,comments:string,criteriasCheckChanges:any[],vendorId:number},type:string='vendor' ) => {
+export const approveVendorAsync= async (data:{stepId:number,approverEmail:string,comments:string,criteriasCheckChanges:any[],vendorId:number},type:string='vendor', commonId:number = 0 ) => {
     try{
-        let response = await axios.post(`${Urls.defaultUrl}/api/Approvals/ApproveStep/${data.stepId}?vendorOrRfpId=${data.vendorId}&comments=${data.comments?? null}&type=${type}`,data.criteriasCheckChanges,{
+        let response = await axios.post(`${Urls.defaultUrl}/api/Approvals/ApproveStep/${data.stepId}?vendorOrRfpId=${data.vendorId}&comments=${data.comments?? null}&type=${type}&commonId=${commonId}`,data.criteriasCheckChanges,{
             headers:{
                 Authorization:`Bearer ${getUserToken()}`
             }
