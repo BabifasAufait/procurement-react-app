@@ -6,6 +6,7 @@ import { documentTypeConst } from "../../../utils/constants";
 import { getUserCredentials } from "../../../utils/common";
 import AddAttachment from "../../basic_components/AddAttachments";
 import { notification } from "antd";
+import ViewTable from "../../basic_components/ViewTable";
 
 type ProposalSubmissionModalProps = {
   rfp: any;
@@ -66,7 +67,6 @@ const ProposalSubmissionModal: React.FC<ProposalSubmissionModalProps> = ({ rfp, 
           <div className="bg-white w-full pt-3 pl-3 mb-[8px]">
             <div>
               <span className="font-bold text-[22px] leading-[33.8px] mb-[8px] block">{proposal?.vendorName}</span>
-              <span className="mb-[4px] block" style={{ color: "gray", fontSize: "14px" }}>Malappuuram, Kerala</span>
               <span style={{ padding: "4px 8px", border: "1px solid #A8AEBA", borderRadius: "20px", fontSize: "14px", backgroundColor: "#EBEEF4" }}>ID: {proposal?.vendorCode}</span>
             </div>
           </div>
@@ -74,26 +74,48 @@ const ProposalSubmissionModal: React.FC<ProposalSubmissionModalProps> = ({ rfp, 
             <div className="mb-2">
               <KeyValueGrid className="mb-[16px]"
                 data={[
-                  { label: "Bid Amount", value: ownerIn.commercial ? proposal?.bidAmount ?? 0 : "*********" },
-                  { label: "Bid Validity", value: ownerIn.commercial ? `${proposal?.bidValidity ?? 0} days` : "*********" },
+                  { label: "Bid Amount", value: ownerIn.commercial || rfp.createdBy.toString() == getUserCredentials().userId ? proposal?.bidAmount ?? 0 : "*********" },
+                  { label: "Bid Validity", value: ownerIn.commercial || rfp.createdBy.toString() == getUserCredentials().userId ? `${proposal?.bidValidity ?? 0} days` : "*********" },
                 ]}
               />
               <KeyValueGrid className="mb-[16px]"
                 data={[
-                  { label: "Tax Included", value: ownerIn.commercial ? proposal?.isTaxIncluded ? "Yes" : "No" : "*********" },
-                  { label: "Included Delivery/Logistics", value: ownerIn.commercial ? proposal?.isShippingIncluded ? "Yes" : "No" : "*********" },
+                  { label: "Tax Included", value: ownerIn.commercial || rfp.createdBy.toString() == getUserCredentials().userId ? proposal?.isTaxIncluded ? "Yes" : "No" : "*********" },
+                  { label: "Included Delivery/Logistics", value: ownerIn.commercial || rfp.createdBy.toString() == getUserCredentials().userId ? proposal?.isShippingIncluded ? "Yes" : "No" : "*********" },
                 ]}
               />
               {/* Payment Terms */}
               <div className="mb-[16px]" style={{ width: "504px" }}>
                 <span className="mb-[4px]" style={{ color: "gray", fontSize: "12px" }}>Payment Terms</span>
-                <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">{ownerIn.commercial ? proposal?.paymentTerms : "*********"}</p>
+                <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">{ownerIn.commercial || rfp.createdBy.toString() == getUserCredentials().userId ? proposal?.paymentTerms : "*********"}</p>
               </div>
 
               {/* Description */}
               <div className="mb-[16px]" style={{ width: "504px" }}>
                 <span className="mb-[4px]" style={{ color: "gray", fontSize: "12px" }}>Escalation Clause / Price Revisions</span>
-                <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">{ownerIn.commercial ? proposal?.escalationTerms : "*********"}</p>
+                <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">{ownerIn.commercial || rfp.createdBy.toString() == getUserCredentials().userId ? proposal?.escalationTerms : "*********"}</p>
+              </div>
+              
+              <div className="mb-[16px]" style={{ width: "504px" }}>
+                <span className="font-bold text-[16px] mb-[8px] flex">
+                  <span>Bid Split</span>
+                </span>
+                <ViewTable
+                  columns={["itemCode", "itemName", "quantity", "amount"]}
+                  columnLabels={{ 
+                    itemCode: "Item Code", 
+                    itemName: "Item Name", 
+                    quantity: "Qty", 
+                    amount: "Amount" 
+                  }}
+                  items={(proposal?.vendorRfpProposalItems || []).map((item: any) => ({
+                    id: item.id,
+                    itemCode: item.rfpItem?.itemCode || "",
+                    itemName: item.rfpItem?.itemName || "",
+                    quantity: ownerIn.commercial || rfp.createdBy.toString() == getUserCredentials().userId ? item.rfpItem?.quantity || 0 : "***",
+                    amount: ownerIn.commercial || rfp.createdBy.toString() == getUserCredentials().userId ? item.amount || 0 : "***"
+                  }))}
+                />
               </div>
 
               {ownerIn.technical && <>

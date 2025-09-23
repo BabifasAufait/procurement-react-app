@@ -8,7 +8,7 @@ import Table from '../../basic_components/Table';
 import { IFilterDto } from '../../../types/commonTypes';
 import Modal from '../../basic_components/Modal';
 import ProposalSubmissionModal from './ProposalSubmissionModal';
-import { getAllEvaluationReportsAsync, getAllProposalsByFilterAsync, getAllRfpIntrestByFilterAsync, uploadEvaluationReportAsync } from '../../../services/rfpService';
+import { getAllEvaluationReportsAsync, getAllProposalsByFilterAsync, getAllRfpIntrestByFilterAsync, getProposalByIdAsync, uploadEvaluationReportAsync } from '../../../services/rfpService';
 import ClarificationList from './ClarificationList';
 import { DocumentIconByExtension, IntrestedIcon, OpenMainIcon } from '../../../utils/Icons';
 import { notification } from 'antd';
@@ -34,8 +34,8 @@ import { documentTypeConst } from "../../../utils/constants";
 interface IRfpDetailRight {
     rfp: IRfp
     trigger: () => void
-    vendorProposals:any[]
-    setVendorProposals:React.Dispatch<SetStateAction<any[]>>
+    vendorProposals: any[]
+    setVendorProposals: React.Dispatch<SetStateAction<any[]>>
 }
 
 const ItemCountCard: React.FC<{ item: { icon: any, label: string, bgColor: string, count: number }, className?: string }> = ({ item, className }) => {
@@ -50,7 +50,7 @@ const ItemCountCard: React.FC<{ item: { icon: any, label: string, bgColor: strin
     )
 }
 
-const RfpDetailRight: React.FC<IRfpDetailRight> = ({ rfp, trigger,vendorProposals, setVendorProposals }) => {
+const RfpDetailRight: React.FC<IRfpDetailRight> = ({ rfp, trigger, vendorProposals, setVendorProposals }) => {
 
     const [isModalOpenItem, setIsModalOpenItem] = useState<any>(null);
     // const [vendorProposals, setVendorProposals] = useState<any[]>([]);
@@ -245,7 +245,10 @@ const RfpDetailRight: React.FC<IRfpDetailRight> = ({ rfp, trigger,vendorProposal
                                         columns={proposalTableColumns}
                                         title="Proposals"
                                         type="proposal"
-                                        setIsModalOpenItem={setIsModalOpenItem}
+                                        setIsModalOpenItem={async (val) => {
+                                            const proposalTemp = await getProposalByIdAsync(val?.id);
+                                            setIsModalOpenItem(proposalTemp)
+                                        }}
                                         filter={filter}
                                         setFilter={setFilter}
                                         setSearchQuery={setSearchQuery}

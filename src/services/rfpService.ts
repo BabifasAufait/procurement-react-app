@@ -97,6 +97,19 @@ export const getAllProposalsByFilterAsync = async(filterDto:IFilterDto)=>{
     }
 }
 
+export const getProposalByIdAsync = async(id : number)=>{
+    try{
+        const response = await axios.get(`${Urls.defaultUrl}/api/Rfps/GetAllRfpProposalsAsync/${id}`,{
+            headers:{
+                Authorization:`Bearer ${getUserToken()}`
+            }
+        })
+        return response.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
 export const getAllProposalDocuments = async(rfpId : number, proposalId : number)=>{
     try{
         const response = await axios.get(`${Urls.defaultUrl}/api/Rfps/GetVendorProposalsDocuments?rfpId=${rfpId}&vendorProposalId=${proposalId}`,{
