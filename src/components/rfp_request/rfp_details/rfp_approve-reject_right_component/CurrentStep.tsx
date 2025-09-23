@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
-import { Spin } from "antd";
+import { notification, Spin } from "antd";
 import { IStep } from "../../../../types/approvalflowTypes";
 import { approveVendorAsync, rejectVendorAsync } from "../../../../services/flowService";
 import { getVendorCriteriasAsync } from "../../../../services/vendorService";
@@ -21,10 +21,11 @@ import { Check, X } from "lucide-react";
 //   { id: 9, criteria: "Site visit", isChecked: true },
 //   { id: 10, criteria: "Factory inspection", isChecked: true },
 // ];
-const CurrentStep: React.FC<{ step: IStep; trigger: () => void, flowType:"rfp" | "rfpproposal" | "rfpaward" }> = ({
+const CurrentStep: React.FC<{ step: IStep; trigger: () => void, flowType:"rfp" | "rfpproposal" | "rfpaward", proposalId?:number }> = ({
   step,
   trigger,
-  flowType
+  flowType,
+  proposalId
 }) => {
   const currentUserId = Cookies.get("userId") || "";
   const [selectedAction, setSelectedAction] = useState<"approved" | "rejected">("approved");
@@ -62,7 +63,10 @@ const CurrentStep: React.FC<{ step: IStep; trigger: () => void, flowType:"rfp" |
       if (hasError) return;
       setShowLoaderOnButton(true)
       if (selectedAction === "approved") {
-        await approveVendorAsync({ stepId: step.id, approverEmail: step.approverEmail, comments: approveComment, vendorId: Number(id), criteriasCheckChanges: checklistData }, flowType)
+        if(flowType == "rfpaward" && !proposalId)notification.warning({
+          message:"Please select proposal any proposal"
+        })
+        await approveVendorAsync({ stepId: step.id, approverEmail: step.approverEmail, comments: approveComment, vendorId: Number(id), criteriasCheckChanges: checklistData }, flowType, flowType == "rfpaward" ? proposalId : 0)
 
       } else if (selectedAction === "rejected") {
         await rejectVendorAsync({ stepId: step.id, approverEmail: step.approverEmail, comments: approveComment, vendorId: Number(id), criteriasCheckChanges: checklistData }, flowType)

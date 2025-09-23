@@ -11,10 +11,10 @@ import { getUserCredentials } from '../../../utils/common';
 import StepIndicator from './rfp_approve-reject_right_component/StepIndicator';
 import StepCard from './rfp_approve-reject_right_component/StepCard';
 import { DocumentIconByExtension, GeneralDetailIcon } from '../../../utils/Icons';
-import { getAllEvaluationReportsAsync, getAllSelectedProposalsByRfpIdAsync, sendFinalBidRequestAsync } from '../../../services/rfpService';
+import { getAllEvaluationReportsAsync, getAllSelectedProposalsByRfpIdAsync, getRfpDecisionPaperByRfpIdAsync, sendFinalBidRequestAsync } from '../../../services/rfpService';
 import Modal from '../../basic_components/Modal';
 import RfpDecisionForm from '../../../pages/rfp_decision_form/RfpDecisionForm';
-import { Button } from 'antd';
+import { Button, Select } from 'antd';
 import ViewTable from '../../basic_components/ViewTable';
 
 interface IRfpDetailRight {
@@ -25,13 +25,12 @@ interface IRfpDetailRight {
 const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
     const [stepsList, setStepsList] = useState<any[]>([])
     const [showModal, setShowModal] = useState<boolean>(false);
-    const [evaluationDocuments, setEvaluationDocuments] = useState<any>([
-        // {
-        //     fileTitle: "asjhads",
-        //     filePath: "sdhgfdsjhfdsk.png"
-        // }
-    ]);
-    const [selectedProposals,setSelectedProposals] = useState<any[]>([]);
+    const [decissionPaper, setDecissionPaper] = useState<any>({
+        vendorRfpProposalId: 0
+    })
+    const [evaluationDocuments, setEvaluationDocuments] = useState<any>([]);
+    const [selectedProposals, setSelectedProposals] = useState<any[]>([]);
+    const[enableSelect, setEnableSelect] = useState<boolean>(false);
 
     const setupRfpProposalApproveReject = async () => {
         const response: any[] = await getRpfApprovalFlowsByIdAsync(rfpDetails?.id, "rfpaward");
@@ -42,8 +41,10 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
             const evalutionDocumentMapped = evaluationReports.map((d: any) => ({ documentUrl: d.filePath, documentName: d.fileTitle }));
             setEvaluationDocuments(evalutionDocumentMapped);
             const selectedProposalsList = await getAllSelectedProposalsByRfpIdAsync(rfpDetails?.id || 0);
-            console.log(selectedProposalsList,"selectedProposalsList--------------selectedProposalsList")
+            console.log(selectedProposalsList, "selectedProposalsList--------------selectedProposalsList")
             setSelectedProposals(selectedProposalsList);
+            const decissionPaperTemp = await getRfpDecisionPaperByRfpIdAsync(rfpDetails?.id);
+            if (decissionPaperTemp) setDecissionPaper(decissionPaperTemp);
         }
     }
 
@@ -110,6 +111,10 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
                                     />
                                 </div>
                             ))}
+                            <div>
+                                <label className="block text-sm font-medium text-md mb-1">Selectd vendor for Award</label>
+                                <Select className='w-[400px]' placeholder="Select proposal" disabled={!enableSelect} onChange={(val) => setDecissionPaper((x: any) => ({ ...x, vendorRfpProposalId: val }))} value={decissionPaper.vendorRfpProposalId} allowClear options={selectedProposals.map((c: any) => ({ value: c.id, label: c.vendorName })) || []} />
+                            </div>
                         </div>
                     )}
 
@@ -123,7 +128,7 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
                         })();
                     }}>Send Final Bid Request</Button>
                 </div>}
-                
+
                 {(rfpDetails?.finalBidSubmitted == true || rfpDetails?.finalBidSubmitted == null) ? <>
                     <div className="w-full">
                         {stepsList.map((step, index) => {
@@ -141,6 +146,7 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
                             if (index <= currentIndex) {
                                 return (
                                     <StepCard
+                                        proposalId={decissionPaper.vendorRfpProposalId}
                                         flowType='rfpaward'
                                         key={index}
                                         step={step || []}
@@ -150,11 +156,12 @@ const RfpAwardflow: React.FC<IRfpDetailRight> = ({ rfpDetails, trigger }) => {
                                     />
                                 );
                             }
-
+                            setEnableSelect(true);
                             // Show future steps in a plain div
                             return (
                                 (rfpDetails.status == 1 || rfpDetails.status == 2) && (rfpDetails.createdBy == getUserCredentials().userId) ?
                                     <StepCard
+                                        proposalId={decissionPaper.vendorRfpProposalId}
                                         flowType="rfpaward"
                                         key={index}
                                         step={step || []}
