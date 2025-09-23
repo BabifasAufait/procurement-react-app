@@ -8,6 +8,7 @@ import {
   DocumentTextIcon,
   HomeIcon,
   SettingsIcon,
+  UpcomingVendorsIcon,
   UserIcon,
 } from "../../utils/Icons";
 import Modal from "./Modal";
@@ -31,6 +32,7 @@ const Sidebar = ({ notifications,trigger }: SidebarProp) => {
     { to: "/", title: "Dashboard", icon: HomeIcon },
     { to: "/rfps", title: "Requests", icon: ClipboardIcon },
     { to: "/vendors", title: "Vendors", icon: DocumentTextIcon },
+    { to: "/upcoming-vendors", title: "UpcomingVendors", icon: UpcomingVendorsIcon },
     { to: "/settings/user-managment", title: "Settings", icon: SettingsIcon },
   ];
 

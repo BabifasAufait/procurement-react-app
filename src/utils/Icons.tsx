@@ -407,3 +407,47 @@ export const DocumentIconByExtension: React.FC<{ filePath: string; className?: s
   const IconComponent = iconMap[extension] || PdfIcon;
   return <IconComponent className={className} />;
 };
+
+export const UpcomingVendorsIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <div className="group relative">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      className={`w-6 h-6 transition-all duration-300 group-hover:scale-110 ${className}`}
+    >
+      <defs>
+        <linearGradient id="upcomingVendorsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+           <stop offset="0%" stopColor="#14B8A6" /> 
+          <stop offset="100%" stopColor="#0D9488" />
+        </linearGradient>
+        <filter id="upcomingVendorsShadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#F59E0B" floodOpacity="0.3" />
+        </filter>
+      </defs>
+
+      <rect
+        x="3"
+        y="4"
+        width="18"
+        height="17"
+        rx="2"
+        ry="2"
+        fill="url(#upcomingVendorsGradient)"
+        filter="url(#upcomingVendorsShadow)"
+      />
+      <line x1="3" y1="9" x2="21" y2="9" stroke="#fff" strokeWidth="1.5" />
+      <line x1="8" y1="2" x2="8" y2="6" stroke="#fff" strokeWidth="1.5" />
+      <line x1="16" y1="2" x2="16" y2="6" stroke="#fff" strokeWidth="1.5" />
+
+      <circle cx="8" cy="13" r="1" fill="#fff" />
+      <circle cx="12" cy="13" r="1" fill="#fff" />
+      <circle cx="16" cy="13" r="1" fill="#fff" />
+      <circle cx="8" cy="17" r="1" fill="#fff" />
+      <circle cx="12" cy="17" r="1" fill="#fff" />
+    </svg>
+
+    <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+      Upcoming<br></br> Tendors
+    </div>
+  </div>
+);

@@ -87,7 +87,7 @@ const ApprovalWorkflow: React.FC = () => {
               }}
               className={`px-6 py-3 text-button rounded-xl transition-all duration-200 ${
                 activeTab.label === tab.label
-                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 !text-white shadow-lg"
                   : "text-muted hover:text-slate-900 hover:bg-gray-50"
               }`}
             >
