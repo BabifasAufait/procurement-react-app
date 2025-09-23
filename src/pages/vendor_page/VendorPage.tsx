@@ -141,10 +141,10 @@ function VendorPage() {
         {!showLoader ? (
           <>
             {/* Header Section */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-8">
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-emerald-600 to-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-[#1365AA] rounded-2xl flex items-center justify-center shadow-lg">
                     <span className="text-white text-2xl font-bold">🏢</span>
                   </div>
                   <div>
@@ -165,7 +165,7 @@ function VendorPage() {
               </div>
             </div>
             {/* Tab Navigation */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-8">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 mb-4">
               <div className="flex items-center space-x-8">
                 {tabs.map((tab, index) => (
                   <div key={tab} className="flex items-center">
@@ -173,7 +173,7 @@ function VendorPage() {
                       onClick={() => setupTab(tab)}
                       className={`relative px-6 py-3 text-button rounded-lg transition-all duration-200 ${
                         statusFilter === tab
-                          ? "bg-gradient-to-r from-emerald-500 to-green-600 !text-white shadow-lg transform -translate-y-0.5"
+                          ? "bg-gradient-to-r from-blue-400 to-[#1365AA] !text-white shadow-lg transform -translate-y-0.5"
                           : "text-muted hover:text-slate-900 hover:bg-gray-50"
                       }`}
                     >
@@ -208,7 +208,7 @@ function VendorPage() {
                 trigger={() => setTrigger(true)}
                 NoDataTitle = {"No Vendors are Available"}
                 IsButton={false}
-                IsIcon={true}
+                IsIcon={false}
               />
             </div>
 
