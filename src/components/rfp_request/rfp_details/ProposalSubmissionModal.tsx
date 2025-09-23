@@ -97,9 +97,6 @@ const ProposalSubmissionModal: React.FC<ProposalSubmissionModalProps> = ({ rfp, 
               </div>
               
               <div className="mb-[16px]" style={{ width: "504px" }}>
-                <span className="font-bold text-[16px] mb-[8px] flex">
-                  <span>Bid Split</span>
-                </span>
                 <ViewTable
                   columns={["itemCode", "itemName", "quantity", "amount"]}
                   columnLabels={{ 
