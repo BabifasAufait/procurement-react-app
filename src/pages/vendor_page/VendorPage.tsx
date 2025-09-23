@@ -10,6 +10,7 @@ import CommonTitleCard from "../../components/basic_components/CommonTitleCard";
 import { defaultFilter, vendor_sorting_fields } from "../../utils/constants";
 import { IFilterDto } from "../../types/commonTypes";
 import SortModal from "../../components/basic_components/SortModal";
+import { VendorMainICon } from "../../utils/Icons";
 
 function VendorPage() {
   const commonColumns = [
@@ -144,8 +145,8 @@ function VendorPage() {
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-[#1365AA] rounded-2xl flex items-center justify-center shadow-lg">
-                    <span className="text-white text-2xl font-bold">🏢</span>
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-[#1365AA] rounded-xl flex items-center justify-center shadow-lg">
+                    <span className="text-white text-2xl font-bold"><VendorMainICon/></span>
                   </div>
                   <div>
                     <h1 className="text-heading-2">Vendors</h1>
@@ -207,7 +208,6 @@ function VendorPage() {
                 rowNavigationPath="vendors"
                 trigger={() => setTrigger(true)}
                 NoDataTitle = {"No Vendors are Available"}
-                IsButton={false}
                 IsIcon={false}
               />
             </div>

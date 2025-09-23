@@ -20,6 +20,7 @@ import { convertCurrencyLabel, getUserCredentials } from "../../utils/common";
 import CommonTitleCard from "../../components/basic_components/CommonTitleCard";
 import { IRfp } from "../../types/rfpTypes";
 import RfpFilterModal from "../../components/rfp_request/RfpFilterModal";
+import { ClipboardMainIcon } from "../../utils/Icons";
 
 const tempfilter = {
   fields: [],
@@ -58,6 +59,7 @@ function RequestPage() {
     rfp: IRfp;
   } | null>(null);
   const [filterModalOpen, setFilterModal] = useState<boolean>(false);
+  const [subtitle, setsubTitle] = useState("");
   const navigate = useNavigate();
 
   // const requestStatuses = [
@@ -111,6 +113,7 @@ function RequestPage() {
         // setHideDepartment(true);
         // setHideStatus(false)
         filterdata = { ...filterdata, fields: [] };
+        setsubTitle("View all available Requests for Proposals in the system.");
       } else if (tab == "My RFPs") {
         setColumns(commonColumns);
         // setHideDepartment(false);
@@ -124,6 +127,7 @@ function RequestPage() {
             },
           ],
         };
+        setsubTitle("Track and manage the RFPs you have created.");
       } else if (tab == "Assigned") {
         setColumns(commonColumns);
         // setHideDepartment(false);
@@ -132,6 +136,7 @@ function RequestPage() {
           ...filterdata,
           fields: [{ columnName: "assigned_rfps", value: true }],
         };
+        setsubTitle("Review and work on RFPs assigned to you.");
       } else {
         return;
         //setColumns(columns.filter(x=>x!="capexId"));
@@ -147,6 +152,7 @@ function RequestPage() {
             },
           ],
         };
+        setsubTitle("Access and edit your saved draft RFPs before submission.");
       }
       setDefaultFilter(filterdata);
       setTableName(tab);
@@ -234,8 +240,8 @@ function RequestPage() {
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-[#1365AA] rounded-2xl flex items-center justify-center shadow-lg">
-                    <span className="text-white text-2xl font-bold">📋</span>
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-[#1365AA] rounded-xl flex items-center justify-center shadow-lg">
+                    <span className="text-white text-2xl font-bold"><ClipboardMainIcon/></span>
                   </div>
                   <div>
                     <h1 className="text-heading-2">RFPs</h1>
@@ -286,10 +292,9 @@ function RequestPage() {
                 filter={filter}
                 setFilter={setFilter}
                 title={tableName || "All requests"}
-                subtitle={"Manage and view your RFP requests"}
+                subtitle={ subtitle || "Manage and view your RFP requests"}
                 setIsSortModalOpen={setIsSortModalOpen}
                 columns={columns}
-                IsButton={true}
                 items={rfpRequests || []}
                 columnLabels={rfp_column_labels}
                 setIsFilterModalOpen={setFilterModal}

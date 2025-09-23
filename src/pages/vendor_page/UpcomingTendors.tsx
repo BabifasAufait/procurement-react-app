@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import CommonTitleCard from "../../components/basic_components/CommonTitleCard";
 import Table from "../../components/basic_components/Table";
 import {
@@ -30,7 +30,6 @@ type VendorColumnKeys =
   | "categoryID";
 
 const UpcomingTendors = () => {
-  const [tableName, setTableName] = useState("");
   const columns = [
     "title",
     "description",
@@ -45,7 +44,6 @@ const UpcomingTendors = () => {
     categoryID: "Category ID",
   };
 
-  const [totalTendorrequest, setTotalTendorrequest] = useState<IUTendors[]>([]);
   const [tendorlist, setTendorlist] = useState<IUTendors[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -149,7 +147,7 @@ const UpcomingTendors = () => {
         {/* Table Section */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
           <Table
-            title={tableName || ""}
+            title={""}
             columns={columns}
             columnLabels={vendor_column_labels}
             subtitle={""}
@@ -164,7 +162,6 @@ const UpcomingTendors = () => {
             NoDataDescription={
               "No upcoming tenders are available yet. Create upcoming tenders as per your requirement."
             }
-            IsButton={false}
             IsIcon={false}
             dots={true}
             setDeleteOption={(item: IUTendors) => handleDeleteTender(item)}
