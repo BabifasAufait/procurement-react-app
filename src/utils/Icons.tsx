@@ -1,45 +1,94 @@
 import { FilePlus2 } from "lucide-react";
 import React from "react";
 
-export const EyeSlashIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+interface IconProps {
+  className?: string;
+  strokeColor?: string;
+}
+
+const DEFAULT_STROKE = "#1365AA";
+const ICON_SIZE = "20";
+const MAIN_STROKE = "#ffff";
+const MAIN_ICON_SIZE = "24";
+
+export const EyeSlashIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+    />
   </svg>
-
-
-)
+);
 
 export const CloseIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M6 18 18 6M6 6l12 12"
+    />
   </svg>
-
-)
+);
 
 export const EyeIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+    />
   </svg>
+);
 
-
-)
-
-export const HomeIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <div className="group relative">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={`w-6 h-6 transition-all duration-300 group-hover:scale-110 ${className}`}>
-      <defs>
-        <linearGradient id="homeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3B82F6" />
-          <stop offset="100%" stopColor="#1D4ED8" />
-        </linearGradient>
-        <filter id="homeShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#3B82F6" floodOpacity="0.3"/>
-        </filter>
-      </defs>
-      <path fill="url(#homeGradient)" filter="url(#homeShadow)" d="M12 3l8 6v12a1 1 0 01-1 1H5a1 1 0 01-1-1V9l8-6z" stroke="none" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M12 3l8 6v12a1 1 0 01-1 1H5a1 1 0 01-1-1V9l8-6z" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M9 21v-6a3 3 0 013-3h0a3 3 0 013 3v6" />
+// ----------------- Home Icon -----------------
+export const HomeIcon: React.FC<IconProps> = ({
+  className,
+  strokeColor = DEFAULT_STROKE,
+}) => (
+  <div className="group relative w-5 h-5 flex items-center justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={ICON_SIZE}
+      height={ICON_SIZE}
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 transform-gpu origin-center group-hover:scale-110 ${className}`}
+    >
+      <path d="M3 9l9-6 9 6v12a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" />
+      <path d="M9 21v-6a3 3 0 013-3 3 3 0 013 3v6" />
     </svg>
     <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
       Dashboard
@@ -47,21 +96,28 @@ export const HomeIcon: React.FC<{ className?: string }> = ({ className }) => (
   </div>
 );
 
-export const ClipboardIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <div className="group relative">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={`w-6 h-6 transition-all duration-300 group-hover:scale-110 ${className}`}>
-      <defs>
-        <linearGradient id="clipboardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#10B981" />
-          <stop offset="100%" stopColor="#059669" />
-        </linearGradient>
-        <filter id="clipboardShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#10B981" floodOpacity="0.3"/>
-        </filter>
-      </defs>
-      <path fill="url(#clipboardGradient)" filter="url(#clipboardShadow)" d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8zM6 4a1 1 0 011-1h2a1 1 0 110 2H7a1 1 0 01-1-1zM4 6a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" stroke="none" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8zM6 4a1 1 0 011-1h2a1 1 0 110 2H7a1 1 0 01-1-1zM4 6a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M8 10h8M8 14h4" />
+// ----------------- Clipboard Icon -----------------
+export const ClipboardIcon: React.FC<IconProps> = ({
+  className,
+  strokeColor = DEFAULT_STROKE,
+}) => (
+  <div className="group relative w-5 h-5 flex items-center justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={ICON_SIZE}
+      height={ICON_SIZE}
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 transform-gpu origin-center group-hover:scale-110 ${className}`}
+    >
+      <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4" />
+      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+      <path d="M3 15h6" />
+      <path d="M6 12v6" />
     </svg>
     <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
       RFP Requests
@@ -69,20 +125,26 @@ export const ClipboardIcon: React.FC<{ className?: string }> = ({ className }) =
   </div>
 );
 
-export const DocumentTextIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <div className="group relative">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={`w-6 h-6 transition-all duration-300 group-hover:scale-110 ${className}`}>
-      <defs>
-        <linearGradient id="usersGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F59E0B" />
-          <stop offset="100%" stopColor="#D97706" />
-        </linearGradient>
-        <filter id="usersShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#F59E0B" floodOpacity="0.3"/>
-        </filter>
-      </defs>
-      <path fill="url(#usersGradient)" filter="url(#usersShadow)" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" stroke="none" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+export const DocumentTextIcon: React.FC<IconProps> = ({
+  className,
+  strokeColor = DEFAULT_STROKE,
+}) => (
+  <div className="group relative w-5 h-5 flex items-center justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={ICON_SIZE}
+      height={ICON_SIZE}
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 transform-gpu origin-center group-hover:scale-110 ${className}`}
+    >
+      <path d="M16.051 12.616a1 1 0 0 1 1.909.024l.737 1.452a1 1 0 0 0 .737.535l1.634.256a1 1 0 0 1 .588 1.806l-1.172 1.168a1 1 0 0 0-.282.866l.259 1.613a1 1 0 0 1-1.541 1.134l-1.465-.75a1 1 0 0 0-.912 0l-1.465.75a1 1 0 0 1-1.539-1.133l.258-1.613a1 1 0 0 0-.282-.866l-1.156-1.153a1 1 0 0 1 .572-1.822l1.633-.256a1 1 0 0 0 .737-.535z" />
+      <path d="M8 15H7a4 4 0 0 0-4 4v2" />
+      <circle cx="10" cy="7" r="4" />
     </svg>
     <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
       Vendors
@@ -90,22 +152,25 @@ export const DocumentTextIcon: React.FC<{ className?: string }> = ({ className }
   </div>
 );
 
-export const SettingsIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <div className="group relative">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={`w-6 h-6 transition-all duration-300 group-hover:scale-110 ${className}`}>
-      <defs>
-        <linearGradient id="settingsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#8B5CF6" />
-          <stop offset="100%" stopColor="#7C3AED" />
-        </linearGradient>
-        <filter id="settingsShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#8B5CF6" floodOpacity="0.3"/>
-        </filter>
-      </defs>
-      <path fill="url(#settingsGradient)" filter="url(#settingsShadow)" d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="none" />
-      <path fill="url(#settingsGradient)" filter="url(#settingsShadow)" d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="none" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+export const SettingsIcon: React.FC<IconProps> = ({
+  className,
+  strokeColor = DEFAULT_STROKE,
+}) => (
+  <div className="group relative w-5 h-5 flex items-center justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={ICON_SIZE}
+      height={ICON_SIZE}
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 transform-gpu origin-center group-hover:scale-110 ${className}`}
+    >
+      <circle cx="12" cy="12" r="3" />
+      <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
     </svg>
     <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
       Settings
@@ -113,22 +178,59 @@ export const SettingsIcon: React.FC<{ className?: string }> = ({ className }) =>
   </div>
 );
 
-export const BellIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <div className="group relative">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={`w-6 h-6 transition-all duration-300 group-hover:scale-110 ${className}`}>
-      <defs>
-        <linearGradient id="bellGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#EF4444" />
-          <stop offset="100%" stopColor="#DC2626" />
-        </linearGradient>
-        <filter id="bellShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#EF4444" floodOpacity="0.3"/>
-        </filter>
-      </defs>
-      <path fill="url(#bellGradient)" filter="url(#bellShadow)" d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9z" stroke="none" />
-      <path fill="url(#bellGradient)" filter="url(#bellShadow)" d="M13.73 21a2 2 0 01-3.46 0" stroke="none" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9z" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M13.73 21a2 2 0 01-3.46 0" />
+// ----------------- Upcoming Tenders Icon -----------------
+export const UpcomingTendorsIcon: React.FC<IconProps> = ({
+  className,
+  strokeColor = DEFAULT_STROKE,
+}) => (
+  <div className="group relative w-5 h-5 flex items-center justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={ICON_SIZE}
+      height={ICON_SIZE}
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 transform-gpu origin-center group-hover:scale-110 ${className}`}
+    >
+      <path d="m14 18 4-4 4 4" />
+      <path d="M16 2v4" />
+      <path d="M18 22v-8" />
+      <path d="M21 11.343V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9" />
+      <path d="M3 10h18" />
+      <path d="M8 2v4" />
+    </svg>
+    <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap text-center">
+      Upcoming
+      <br />
+      Tenders
+    </div>
+  </div>
+);
+
+// ----------------- Bell Icon -----------------
+export const BellIcon: React.FC<IconProps> = ({
+  className,
+  strokeColor = DEFAULT_STROKE,
+}) => (
+  <div className="group relative w-5 h-5 flex items-center justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={ICON_SIZE}
+      height={ICON_SIZE}
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 transform-gpu origin-center group-hover:scale-110 ${className}`}
+    >
+      <path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9z" />
+      <path d="M13.73 21a2 2 0 01-3.46 0" />
     </svg>
     <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
       Notifications
@@ -136,22 +238,26 @@ export const BellIcon: React.FC<{ className?: string }> = ({ className }) => (
   </div>
 );
 
-export const UserIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <div className="group relative">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className={`w-6 h-6 transition-all duration-300 group-hover:scale-110 ${className}`}>
-      <defs>
-        <linearGradient id="userGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#06B6D4" />
-          <stop offset="100%" stopColor="#0891B2" />
-        </linearGradient>
-        <filter id="userShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#06B6D4" floodOpacity="0.3"/>
-        </filter>
-      </defs>
-      <path fill="url(#userGradient)" filter="url(#userShadow)" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="none" />
-      <circle fill="url(#userGradient)" filter="url(#userShadow)" cx="12" cy="7" r="4" stroke="none" />
-      <path fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-      <circle fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" cx="12" cy="7" r="4" />
+// ----------------- User Icon -----------------
+export const UserIcon: React.FC<IconProps> = ({
+  className,
+  strokeColor = DEFAULT_STROKE,
+}) => (
+  <div className="group relative w-5 h-5 flex items-center justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={ICON_SIZE}
+      height={ICON_SIZE}
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 transform-gpu origin-center group-hover:scale-110 ${className}`}
+    >
+      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
     </svg>
     <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
       User Profile
@@ -160,129 +266,362 @@ export const UserIcon: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 export const FilterIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M1.41162 0.800049H13.0116M3.81162 4.00005H10.6116M6.21162 7.20005H8.21162" stroke="#1E1F21" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+  <svg
+    width="14"
+    height="8"
+    viewBox="0 0 14 8"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M1.41162 0.800049H13.0116M3.81162 4.00005H10.6116M6.21162 7.20005H8.21162"
+      stroke="#1E1F21"
+      stroke-width="1.25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   </svg>
-)
+);
 
 export const SortIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M4.92591 3.4285L2.99738 1.5L1.06885 3.4285" stroke="#131415" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M2.9972 10.4997V1.5" stroke="#131415" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M7.49707 8.57153L9.4256 10.5L11.3541 8.57153" stroke="#131415" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M9.42591 1.5V10.4997" stroke="#131415" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 12 12"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M4.92591 3.4285L2.99738 1.5L1.06885 3.4285"
+      stroke="#131415"
+      stroke-width="1.25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M2.9972 10.4997V1.5"
+      stroke="#131415"
+      stroke-width="1.25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M7.49707 8.57153L9.4256 10.5L11.3541 8.57153"
+      stroke="#131415"
+      stroke-width="1.25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M9.42591 1.5V10.4997"
+      stroke="#131415"
+      stroke-width="1.25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   </svg>
-)
+);
 
 export const AddIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 4.5v15m7.5-7.5h-15"
+    />
   </svg>
-
-)
+);
 
 export const PaperClip: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13"
+    />
   </svg>
-)
+);
 
 export const BriefCase: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"
+    />
   </svg>
-
-)
+);
 
 export const CostSumm: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v7.5m2.25-6.466a9.016 9.016 0 0 0-3.461-.203c-.536.072-.974.478-1.021 1.017a4.559 4.559 0 0 0-.018.402c0 .464.336.844.775.994l2.95 1.012c.44.15.775.53.775.994 0 .136-.006.27-.018.402-.047.539-.485.945-1.021 1.017a9.077 9.077 0 0 1-3.461-.203M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v7.5m2.25-6.466a9.016 9.016 0 0 0-3.461-.203c-.536.072-.974.478-1.021 1.017a4.559 4.559 0 0 0-.018.402c0 .464.336.844.775.994l2.95 1.012c.44.15.775.53.775.994 0 .136-.006.27-.018.402-.047.539-.485.945-1.021 1.017a9.077 9.077 0 0 1-3.461-.203M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+    />
   </svg>
-
-)
+);
 
 export const QuotesIcon: React.FC<{ className?: string }> = ({ className }) => (
   <FilePlus2 className={className} />
-
-)
-
-export const TableCloseIcon: React.FC<{ className?: string; onClick?: () => void; }> = ({ className, onClick }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" onClick={onClick} className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-  </svg>
-
 );
 
-
-export const MenuIcon: React.FC<{ className?: string; onClick?: () => void; }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+export const TableCloseIcon: React.FC<{
+  className?: string;
+  onClick?: () => void;
+}> = ({ className, onClick }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    onClick={onClick}
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+    />
   </svg>
-
 );
 
-export const ArrowDownIcon: React.FC<{ className?: string; onClick?: () => void }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+export const MenuIcon: React.FC<{
+  className?: string;
+  onClick?: () => void;
+}> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+    />
   </svg>
-
 );
 
-export const ArrowUpIcon: React.FC<{ className?: string; onClick?: () => void }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+export const ArrowDownIcon: React.FC<{
+  className?: string;
+  onClick?: () => void;
+}> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m19.5 8.25-7.5 7.5-7.5-7.5"
+    />
   </svg>
+);
 
-)
-
-export const TickIcon: React.FC<{ className?: string; onClick?: () => void }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
-    <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+export const ArrowUpIcon: React.FC<{
+  className?: string;
+  onClick?: () => void;
+}> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m4.5 15.75 7.5-7.5 7.5 7.5"
+    />
   </svg>
+);
 
+export const TickIcon: React.FC<{
+  className?: string;
+  onClick?: () => void;
+}> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    className={className}
+  >
+    <path
+      fillRule="evenodd"
+      d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+      clipRule="evenodd"
+    />
+  </svg>
+);
 
-)
-
-export const CrossIcon: React.FC<{ className?: string; onClick?: () => void }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className}>
+export const CrossIcon: React.FC<{
+  className?: string;
+  onClick?: () => void;
+}> = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    className={className}
+  >
     <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
   </svg>
+);
 
-)
-
-export const CustomCalendarIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+export const CustomCalendarIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
+    />
   </svg>
+);
 
-)
-
-export const MagnifyingGlass: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <circle cx="6.85614" cy="6.64472" r="5.24481" stroke="#1E1F21" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M10.5049 10.5625L12.5611 12.6134" stroke="#1E1F21" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+export const MagnifyingGlass: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <circle
+      cx="6.85614"
+      cy="6.64472"
+      r="5.24481"
+      stroke="#1E1F21"
+      stroke-width="1.25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M10.5049 10.5625L12.5611 12.6134"
+      stroke="#1E1F21"
+      stroke-width="1.25"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   </svg>
-)
+);
 
-export const CautionIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+export const CautionIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+    />
   </svg>
+);
 
-)
-
-export const GeneralDetailIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+export const GeneralDetailIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+    />
   </svg>
-)
+);
 
-export const IntrestedIcon: React.FC<{ className?: string }> = ({ className }) => (
-
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+export const IntrestedIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
     <g clip-path="url(#clip0_1797_6887)">
-      <path d="M1.99511 10.8951C2.09314 11.1424 2.11496 11.4133 2.05778 11.6731L1.34778 13.8664C1.3249 13.9777 1.33082 14.0929 1.36496 14.2012C1.39911 14.3095 1.46035 14.4073 1.54289 14.4853C1.62543 14.5633 1.72652 14.6189 1.83658 14.6469C1.94664 14.6749 2.06202 14.6742 2.17178 14.6451L4.44711 13.9798C4.69226 13.9312 4.94613 13.9524 5.17978 14.0411C6.60337 14.7059 8.21602 14.8466 9.73321 14.4383C11.2504 14.0299 12.5746 13.0989 13.4722 11.8094C14.3699 10.5198 14.7832 8.95472 14.6393 7.39015C14.4954 5.82557 13.8036 4.36209 12.6858 3.25791C11.5681 2.15373 10.0962 1.47981 8.53003 1.35504C6.96382 1.23028 5.40387 1.6627 4.12541 2.57601C2.84694 3.48931 1.93213 4.82481 1.54237 6.34687C1.15262 7.86894 1.31296 9.47975 1.99511 10.8951Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M5.2184 8.71243C4.86102 8.3386 4.66234 7.84087 4.66407 7.32369C4.6658 6.80652 4.8678 6.31013 5.22768 5.9387C5.58755 5.56727 6.07731 5.34968 6.59417 5.33161C7.11103 5.31353 7.61479 5.49638 7.99973 5.84176C8.28691 5.58397 8.64253 5.41477 9.02372 5.35457C9.4049 5.29436 9.79537 5.34572 10.148 5.50246C10.5007 5.65919 10.8004 5.9146 11.0112 6.23789C11.2219 6.56117 11.3346 6.93852 11.3357 7.32443C11.3373 7.84163 11.1386 8.33934 10.7811 8.7131L8.48306 11.1264C8.42074 11.1919 8.34574 11.2441 8.26262 11.2797C8.1795 11.3153 8.09001 11.3337 7.99959 11.3336C7.90916 11.3335 7.8197 11.3151 7.73663 11.2793C7.65356 11.2436 7.57863 11.1914 7.5164 11.1258L5.2184 8.71243Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path
+        d="M1.99511 10.8951C2.09314 11.1424 2.11496 11.4133 2.05778 11.6731L1.34778 13.8664C1.3249 13.9777 1.33082 14.0929 1.36496 14.2012C1.39911 14.3095 1.46035 14.4073 1.54289 14.4853C1.62543 14.5633 1.72652 14.6189 1.83658 14.6469C1.94664 14.6749 2.06202 14.6742 2.17178 14.6451L4.44711 13.9798C4.69226 13.9312 4.94613 13.9524 5.17978 14.0411C6.60337 14.7059 8.21602 14.8466 9.73321 14.4383C11.2504 14.0299 12.5746 13.0989 13.4722 11.8094C14.3699 10.5198 14.7832 8.95472 14.6393 7.39015C14.4954 5.82557 13.8036 4.36209 12.6858 3.25791C11.5681 2.15373 10.0962 1.47981 8.53003 1.35504C6.96382 1.23028 5.40387 1.6627 4.12541 2.57601C2.84694 3.48931 1.93213 4.82481 1.54237 6.34687C1.15262 7.86894 1.31296 9.47975 1.99511 10.8951Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M5.2184 8.71243C4.86102 8.3386 4.66234 7.84087 4.66407 7.32369C4.6658 6.80652 4.8678 6.31013 5.22768 5.9387C5.58755 5.56727 6.07731 5.34968 6.59417 5.33161C7.11103 5.31353 7.61479 5.49638 7.99973 5.84176C8.28691 5.58397 8.64253 5.41477 9.02372 5.35457C9.4049 5.29436 9.79537 5.34572 10.148 5.50246C10.5007 5.65919 10.8004 5.9146 11.0112 6.23789C11.2219 6.56117 11.3346 6.93852 11.3357 7.32443C11.3373 7.84163 11.1386 8.33934 10.7811 8.7131L8.48306 11.1264C8.42074 11.1919 8.34574 11.2441 8.26262 11.2797C8.1795 11.3153 8.09001 11.3337 7.99959 11.3336C7.90916 11.3335 7.8197 11.3151 7.73663 11.2793C7.65356 11.2436 7.57863 11.1914 7.5164 11.1258L5.2184 8.71243Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </g>
     <defs>
       <clipPath id="clip0_1797_6887">
@@ -290,13 +629,34 @@ export const IntrestedIcon: React.FC<{ className?: string }> = ({ className }) =
       </clipPath>
     </defs>
   </svg>
-)
+);
 
-export const OpenMainIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+export const OpenMainIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
     <g clip-path="url(#clip0_1779_7231)">
-      <path d="M14.134 5.60065C14.4673 5.85398 14.6673 6.24732 14.6673 6.66732V13.334C14.6673 13.6876 14.5268 14.0267 14.2768 14.2768C14.0267 14.5268 13.6876 14.6673 13.334 14.6673H2.66732C2.3137 14.6673 1.97456 14.5268 1.72451 14.2768C1.47446 14.0267 1.33398 13.6876 1.33398 13.334V6.66732C1.33398 6.46032 1.38218 6.25617 1.47475 6.07103C1.56732 5.88589 1.70172 5.72485 1.86732 5.60065L7.20065 1.60065C7.43145 1.42755 7.71216 1.33398 8.00065 1.33398C8.28914 1.33398 8.56986 1.42755 8.80065 1.60065L14.134 5.60065Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M14.6673 6.66602L8.68732 10.466C8.4815 10.595 8.24353 10.6634 8.00065 10.6634C7.75777 10.6634 7.5198 10.595 7.31398 10.466L1.33398 6.66602" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path
+        d="M14.134 5.60065C14.4673 5.85398 14.6673 6.24732 14.6673 6.66732V13.334C14.6673 13.6876 14.5268 14.0267 14.2768 14.2768C14.0267 14.5268 13.6876 14.6673 13.334 14.6673H2.66732C2.3137 14.6673 1.97456 14.5268 1.72451 14.2768C1.47446 14.0267 1.33398 13.6876 1.33398 13.334V6.66732C1.33398 6.46032 1.38218 6.25617 1.47475 6.07103C1.56732 5.88589 1.70172 5.72485 1.86732 5.60065L7.20065 1.60065C7.43145 1.42755 7.71216 1.33398 8.00065 1.33398C8.28914 1.33398 8.56986 1.42755 8.80065 1.60065L14.134 5.60065Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M14.6673 6.66602L8.68732 10.466C8.4815 10.595 8.24353 10.6634 8.00065 10.6634C7.75777 10.6634 7.5198 10.595 7.31398 10.466L1.33398 6.66602"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </g>
     <defs>
       <clipPath id="clip0_1779_7231">
@@ -304,68 +664,196 @@ export const OpenMainIcon: React.FC<{ className?: string }> = ({ className }) =>
       </clipPath>
     </defs>
   </svg>
-)
+);
 
-export const DocumentIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className={className}>
-    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+export const DocumentIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+    />
   </svg>
-)
+);
 
 export const NoDataIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" className={className}
+  <svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
     width="512"
     height="512"
     viewBox="0 0 512 512"
-    fill="currentColor"  // makes fill respond to text color
+    fill="currentColor" // makes fill respond to text color
     stroke="none"
-    strokeWidth="1.5">
-    <path fill="currentColor" d="M0 0 C0.8947554 -0.01283524 1.7895108 -0.02567047 2.71138 -0.03889465 C3.66667099 -0.04628159 4.62196198 -0.05366852 5.60620117 -0.0612793 C6.60117111 -0.06935104 7.59614105 -0.07742279 8.6212616 -0.08573914 C10.72340164 -0.09954428 12.82556377 -0.11028233 14.92773438 -0.11816406 C17.07005412 -0.12969151 19.21234498 -0.15015527 21.35449219 -0.1796875 C24.4594259 -0.22246967 27.56350889 -0.23854696 30.66870117 -0.2487793 C31.61791946 -0.26628738 32.56713776 -0.28379547 33.54512024 -0.30183411 C40.44362901 -0.27951406 46.14213141 1.0231582 51.17651367 5.9934082 C51.53874023 6.56961914 51.9009668 7.14583008 52.27416992 7.73950195 C52.84458008 8.60768555 52.84458008 8.60768555 53.42651367 9.4934082 C56.4642747 15.11261422 56.33233684 22.50622992 54.68823242 28.56762695 C52.45256456 33.57399429 49.12760447 36.58700718 44.33666992 39.17700195 C40.82461932 40.34768549 37.95226216 40.35438655 34.24682617 40.4230957 C32.80736816 40.45608633 31.36791518 40.48929693 29.9284668 40.52270508 C27.67777651 40.5696705 25.42709823 40.61400811 23.17626953 40.65380859 C7.78103553 40.93900039 -7.4255887 41.41384542 -19.53833008 52.30200195 C-25.35719058 58.8020949 -28.54704057 66.53994417 -30.16574097 75.03314209 C-30.28959887 75.68002637 -30.41345678 76.32691064 -30.54106796 76.99339747 C-31.9785984 84.62876253 -33.18151913 92.3022262 -34.37475586 99.97875977 C-34.62945293 101.60174337 -34.88443588 103.22468213 -35.13967896 104.84757996 C-35.68327332 108.30763484 -36.2249403 111.76798361 -36.76504898 115.22858429 C-37.61911162 120.70034563 -38.47792012 126.17135587 -39.33737183 131.64227295 C-41.00332586 142.25110154 -42.66474202 152.86063814 -44.32548523 163.47028351 C-46.44636134 177.01874046 -48.56870814 190.5669648 -50.69639575 204.1143539 C-51.55069132 209.55488866 -52.40239826 214.99582048 -53.25210214 220.43707418 C-53.77936122 223.81024762 -54.30872747 227.18308788 -54.83866501 230.55584145 C-55.08426727 232.12185713 -55.32897668 233.68801314 -55.57273865 235.25431633 C-55.90486411 237.38763514 -56.24013557 239.52043629 -56.57620239 241.65313721 C-56.76311708 242.84765629 -56.95003178 244.04217537 -57.14261055 245.272892 C-57.66333008 248.17700195 -57.66333008 248.17700195 -58.66333008 251.17700195 C-58.03164162 251.17331478 -57.39995316 251.16962761 -56.74912262 251.1658287 C-41.35779939 251.07737775 -25.96656494 251.01124394 -10.57505035 250.96975327 C-3.13172765 250.94915383 4.31142508 250.92108369 11.75463867 250.87524414 C18.24438548 250.83529573 24.73400916 250.8095501 31.22387552 250.80064797 C34.65825048 250.79544665 38.09227327 250.78327728 41.52653503 250.75408173 C45.3664532 250.72501264 49.20564366 250.72104763 53.0456543 250.72290039 C54.17638367 250.70851929 55.30711304 250.69413818 56.47210693 250.67932129 C62.94457338 250.71307649 67.96817581 251.36604426 73.33666992 255.17700195 C75.84838867 257.7434082 75.84838867 257.7434082 78.02416992 260.73950195 C78.42716309 261.28670898 78.83015625 261.83391602 79.24536133 262.39770508 C83.59668189 268.3740205 87.74134952 274.50914874 91.87060547 280.64013672 C92.39307861 281.41542725 92.91555176 282.19071777 93.45385742 282.98950195 C93.9138916 283.67657227 94.37392578 284.36364258 94.84790039 285.0715332 C95.33919434 285.76633789 95.83048828 286.46114258 96.33666992 287.17700195 C96.82725388 288.02782852 97.31783783 288.87865509 97.82328796 289.75526428 C101.57912029 293.37414943 104.99133153 292.97424874 110.03955078 293.03027344 C111.51603088 293.07473854 111.51603088 293.07473854 113.02233887 293.12010193 C116.28214886 293.20848636 119.5407802 293.25712562 122.80151367 293.2980957 C123.91797335 293.31597704 125.03443302 293.33385838 126.18472481 293.35228157 C132.10003605 293.44485005 138.01475367 293.50619593 143.93066406 293.54296875 C150.01974052 293.58702204 156.10113993 293.73804216 162.18761349 293.91442776 C166.8866635 294.03063818 171.58391042 294.065683 176.28427315 294.07948494 C178.52642495 294.10004806 180.76852411 294.15069273 183.00926018 294.23296928 C194.91614789 294.943567 194.91614789 294.943567 205.51167679 290.4505806 C209.42299539 286.23993091 212.28596066 281.53875083 215.01405525 276.50541878 C217.15295426 272.73996196 219.74565488 269.32670463 222.33666992 265.86450195 C222.76743112 265.26513352 223.19819231 264.66576509 223.64200687 264.04823399 C227.78258322 258.33546293 231.64875707 253.73181778 238.33666992 251.17700195 C242.45088941 250.7485944 246.54302322 250.79819344 250.67602539 250.83642578 C251.91560501 250.8359877 253.15518463 250.83554962 254.43232727 250.83509827 C257.81844477 250.83682608 261.20400871 250.85183656 264.59002829 250.87282014 C268.13341728 250.89161648 271.67681421 250.8933397 275.22024536 250.89689636 C281.92435886 250.90620818 288.62832502 250.93081015 295.33237374 250.96094483 C302.96717145 250.99451582 310.60197633 251.01098162 318.23682952 251.02603114 C333.93686155 251.05736057 349.63674671 251.11010413 365.33666992 251.17700195 C365.23644531 250.53744064 365.1362207 249.89787933 365.03295898 249.23893738 C363.98484825 242.53988918 362.94848134 235.83909692 361.91870117 229.13720703 C361.53364771 226.64130473 361.14567241 224.14585127 360.75463867 221.65087891 C360.19082139 218.05007134 359.6377761 214.44774293 359.08666992 210.8449707 C358.82418457 209.19116646 358.82418457 209.19116646 358.55639648 207.50395203 C355.68217643 188.47715381 355.68217643 188.47715381 360.06323242 180.89575195 C362.98262503 176.95546745 366.78214697 174.01493334 371.33666992 172.17700195 C376.91293865 171.5501273 383.14047416 171.07562248 388.27416992 173.67700195 C395.74196343 179.77315992 398.25627165 185.69670539 399.44897461 195.1237793 C399.76245384 197.27536748 400.07706311 199.42679128 400.3927002 201.57806396 C400.62321327 203.22315571 400.62321327 203.22315571 400.85838318 204.90148163 C401.46193937 209.03490286 402.18441629 213.14187528 402.91604233 217.25422478 C408.80648822 250.5867666 410.49692393 283.07092085 410.11914062 316.87121582 C410.07508858 321.86482979 410.07729081 326.85802204 410.07969284 331.8517971 C410.07860178 336.74040786 410.05663198 341.62874294 410.02768707 346.51726151 C410.01513515 348.80945405 410.00711751 351.10167689 410.00411224 353.39390182 C409.96039405 369.2246221 409.23429308 384.3603465 401.52416992 398.61450195 C401.17652588 399.27861084 400.82888184 399.94271973 400.47070312 400.62695312 C397.61183813 405.95060397 394.42292306 410.7074077 390.33666992 415.17700195 C389.53616211 416.0690332 388.7356543 416.96106445 387.91088867 417.88012695 C374.77391357 431.79657525 356.93675084 440.99197477 337.69781911 442.45341957 C333.66429592 442.5640469 329.64110172 442.58258527 325.60661316 442.56468201 C324.05586768 442.56886368 322.50512527 442.57434574 320.95438844 442.58100182 C316.72759607 442.59536598 312.50100018 442.5912402 308.27419746 442.58383501 C303.70214346 442.57908308 299.13013075 442.59163104 294.55809021 442.60185242 C285.61423681 442.61900656 276.67045378 442.61988742 267.72658821 442.61463951 C260.45300076 442.61059006 253.17943402 442.61205057 245.90584755 442.61738777 C244.35011521 442.6185104 244.35011521 442.6185104 242.76295394 442.61965572 C240.65563358 442.62118727 238.54831322 442.62272562 236.44099287 442.62427069 C216.69992808 442.63798363 196.95890297 442.63256665 177.2178391 442.62108547 C159.18135979 442.61115566 141.14498311 442.62409158 123.10851964 442.64801966 C104.56225663 442.67243756 86.01604137 442.68201184 67.46976262 442.67536694 C57.06803453 442.67188053 46.66638531 442.67406844 36.26466942 442.69161797 C27.40946025 442.70637367 18.55438552 442.70693153 9.6991789 442.68954705 C5.18675345 442.68106214 0.6745678 442.67882572 -3.83784485 442.69419861 C-7.97894922 442.70813112 -12.1196103 442.70317394 -16.26068958 442.68395937 C-17.74846153 442.68022508 -19.23626973 442.68304599 -20.72400913 442.69357102 C-34.03367194 442.78093872 -47.25174214 440.77371558 -59.10083008 434.36450195 C-59.76493896 434.01685791 -60.42904785 433.66921387 -61.11328125 433.31103516 C-66.4369321 430.45217017 -71.19373583 427.26325509 -75.66333008 423.17700195 C-76.55536133 422.37649414 -77.44739258 421.57598633 -78.36645508 420.7512207 C-100.77741132 399.59552294 -103.5749002 372.62623682 -104.50244141 343.55834961 C-104.61961301 339.09820947 -104.7092159 334.63796761 -104.78833008 330.17700195 C-104.8099609 329.04282585 -104.83159172 327.90864975 -104.85387802 326.74010468 C-105.7989689 270.04942585 -96.53237894 214.60015523 -87.47583008 158.80200195 C-87.11183774 156.55255646 -86.74787745 154.30310578 -86.38394928 152.0536499 C-83.95075001 137.03673077 -81.46311716 122.02941974 -78.93286133 107.02856445 C-78.76680885 106.04043149 -78.60075637 105.05229852 -78.429672 104.03422213 C-77.47633298 98.36468984 -76.51110162 92.69742951 -75.52717948 87.03312111 C-75.23420142 85.33991859 -74.94431604 83.64617704 -74.6580317 81.95182991 C-73.22865326 73.51697698 -71.56060061 65.24283919 -69.17655945 57.02059937 C-68.88434312 56.00697545 -68.88434312 56.00697545 -68.58622342 54.97287428 C-62.51742786 34.96610054 -48.56017387 18.91098437 -30.35083008 8.92700195 C-21.04317184 4.01246403 -10.6291221 0.13381287 0 0 Z M-62.66333008 291.17700195 C-62.70991197 300.22698633 -62.74532951 309.27692867 -62.76695442 318.32700729 C-62.77733943 322.53046693 -62.79140065 326.73384382 -62.81420898 330.93725586 C-62.83612766 335.00269623 -62.8479383 339.0680576 -62.85308456 343.13355255 C-62.8567465 344.67549124 -62.86389604 346.21742619 -62.87479019 347.75933075 C-62.98764254 364.41203534 -61.77767892 378.47786121 -49.90551758 391.1340332 C-37.89031169 402.08168595 -23.81272066 402.329555 -8.41876221 402.31071472 C-6.96847975 402.31258473 -5.51819779 402.3148862 -4.06791663 402.31758004 C-0.09579902 402.32368093 3.87629749 402.32356647 7.84841871 402.32238567 C12.1375762 402.32218123 16.426727 402.32770455 20.71588135 402.33244324 C29.11428933 402.34074098 37.51269029 402.34349768 45.91110203 402.34405562 C52.73956637 402.34453119 59.5680284 402.34658804 66.396492 402.34975624 C85.76725003 402.35856045 105.13800253 402.36317599 124.50876257 402.36242577 C125.5525091 402.36238581 126.59625564 402.36234585 127.67163086 402.36230469 C128.71665552 402.36226381 129.76168018 402.36222293 130.83837226 402.36218081 C147.77206575 402.36177441 164.705737 402.37134297 181.63942406 402.38544305 C199.03740777 402.39981514 216.43538065 402.40671278 233.83337045 402.40584928 C243.59674535 402.40551759 253.36009694 402.40825212 263.12346649 402.41902733 C271.4364965 402.42814328 279.74949263 402.43029858 288.06252548 402.42351791 C292.30094913 402.42025823 296.5393078 402.42017603 300.77772522 402.42887115 C304.66396174 402.43676153 308.55008203 402.43527896 312.4363158 402.42658702 C313.83601227 402.42505761 315.23571751 402.42684696 316.6354036 402.4324471 C332.81740011 402.49286048 346.11816219 400.8404915 358.29370117 389.41918945 C367.36166661 379.46696735 369.47353947 367.82394758 369.45019531 354.7512207 C369.45041435 353.71071312 369.45041435 353.71071312 369.45063782 352.64918518 C369.44994877 350.38759075 369.44220431 348.12608175 369.43432617 345.86450195 C369.4324584 344.28409876 369.43103619 342.70369499 369.43003845 341.12329102 C369.42624154 336.98710499 369.41643574 332.85095473 369.40533447 328.71478271 C369.39505924 324.48474613 369.3905278 320.2547037 369.38549805 316.0246582 C369.37481063 307.74208981 369.3577686 299.45955034 369.33666992 291.17700195 C354.64632238 290.87259823 339.95639491 290.64373115 325.26352882 290.50344372 C318.44031653 290.43655654 311.61906936 290.34547117 304.79711914 290.19628906 C298.2095233 290.05230114 291.62342689 289.97724095 285.03419113 289.94359779 C282.52456973 289.91963419 280.0150561 289.87283364 277.50630569 289.80251122 C263.71306295 288.73932044 263.71306295 288.73932044 251.64248657 293.97305298 C248.96533803 297.07759668 247.15016483 300.50543769 245.33666992 304.17700195 C244.13740988 305.94582386 242.91596198 307.70017653 241.65698242 309.42700195 C240.58782786 311.00760306 239.52260758 312.59087377 238.46166992 314.17700195 C236.43736678 317.18935781 234.39579907 320.1883739 232.33666992 323.17700195 C231.7153418 324.10512695 231.09401367 325.03325195 230.45385742 325.98950195 C225.73843285 330.86152734 220.83508255 332.40511899 214.22741699 332.68493652 C211.8114743 332.70858756 209.39525497 332.71035962 206.97924805 332.69458008 C205.64130393 332.7000088 204.30336579 332.70713566 202.96543884 332.71582031 C199.35170358 332.7339679 195.738428 332.72702207 192.12468529 332.71430397 C188.33144322 332.70413155 184.53823883 332.71358137 180.74499512 332.71984863 C174.3765562 332.72711276 168.00830322 332.71756994 161.63989258 332.69848633 C154.29160361 332.67671981 146.94375866 332.68377207 139.59548044 332.70579195 C133.27079183 332.72398133 126.94623639 332.72648706 120.62153006 332.71603727 C116.85088931 332.70982169 113.08045683 332.70891299 109.30982971 332.72218323 C105.76373719 332.73379294 102.21821356 332.72562394 98.67218208 332.7026062 C96.76058343 332.69484987 94.84893629 332.70663125 92.93736267 332.71911621 C85.20544781 332.6434241 79.25343507 331.93988157 73.44140625 326.35620117 C73.02141357 325.7376123 72.6014209 325.11902344 72.16870117 324.48168945 C71.67402344 323.77391357 71.1793457 323.0661377 70.66967773 322.33691406 C69.91702637 321.20588257 69.91702637 321.20588257 69.14916992 320.05200195 C68.03637573 318.44619557 66.92307854 316.84073766 65.80932617 315.2355957 C65.24358887 314.40785645 64.67785156 313.58011719 64.0949707 312.72729492 C61.16177295 308.47289562 58.12051565 304.2973972 55.08666992 300.11450195 C54.52568604 299.33510254 53.96470215 298.55570312 53.38671875 297.75268555 C52.87004639 297.0354834 52.35337402 296.31828125 51.82104492 295.5793457 C51.36439453 294.94504639 50.90774414 294.31074707 50.43725586 293.65722656 C49.41341543 292.20523599 49.41341543 292.20523599 48.33666992 291.17700195 C46.89452993 291.0814216 45.44772913 291.05511801 44.00242615 291.05674744 C43.06708038 291.05537277 42.13173462 291.05399811 41.16804504 291.05258179 C40.13370834 291.05617706 39.09937164 291.05977234 38.03369141 291.06347656 C36.95089905 291.06333054 35.86810669 291.06318451 34.75250244 291.06303406 C31.15423618 291.06373372 27.55602095 291.07152862 23.95776367 291.0793457 C21.47054574 291.08120969 18.98332744 291.08263368 16.49610901 291.08363342 C10.60645801 291.08706845 4.71682602 291.09495918 -1.17281717 291.10498291 C-8.53358382 291.11723949 -15.89435272 291.12262404 -23.25512695 291.12817383 C-36.39120406 291.13891381 -49.5272659 291.15580106 -62.66333008 291.17700195 Z " transform="translate(102.663330078125,64.822998046875)" />
-    <path fill="currentColor" d="M0 0 C3.06426658 1.7058833 5.35525528 3.48259627 7.92111206 5.85972595 C8.78347473 6.6578067 9.6458374 7.45588745 10.53433228 8.27815247 C14.47602257 12.0305905 18.34826625 15.84449743 22.18331909 19.70567322 C22.99042328 20.51419235 23.79752747 21.32271149 24.62908936 22.1557312 C27.16778532 24.69995632 29.70295331 27.24766283 32.23800659 29.79551697 C33.97475199 31.53728655 35.71172919 33.27882503 37.44894409 35.02012634 C41.67297661 39.25509368 45.89413047 43.49291313 50.11300659 47.73301697 C53.52897672 46.26007682 55.72492657 44.35431134 58.32736206 41.713974 C59.14856537 40.88616425 59.96976868 40.05835449 60.81585693 39.20545959 C61.6950882 38.30963165 62.57431946 37.41380371 63.48019409 36.49082947 C64.87430029 35.08515099 66.26841226 33.67947819 67.66285896 32.2741375 C70.60228866 29.30845312 73.53265947 26.33381787 76.46456909 23.36070251 C78.87655321 20.91549657 81.2905179 18.47232586 83.7097168 16.03425598 C85.52195891 14.20700218 87.32967189 12.37524245 89.13226318 10.53846741 C95.85114272 3.76594739 100.95432657 -1.36647465 110.92550659 -1.51698303 C117.38384283 -1.44695288 120.88347927 -0.18541352 125.80050659 4.04551697 C130.77224605 9.82348444 131.4532827 14.28835854 131.51144409 21.73301697 C130.75733547 27.41101133 127.80370474 31.42064047 123.98629761 35.54112244 C122.78917648 36.83466644 122.78917648 36.83466644 121.56787109 38.15434265 C117.81543306 42.09603295 114.00152613 45.96827662 110.14035034 49.80332947 C109.33183121 50.61043365 108.52331207 51.41753784 107.69029236 52.24909973 C105.14606724 54.7877957 102.59836073 57.32296369 100.05050659 59.85801697 C98.30873701 61.59476237 96.56719853 63.33173957 94.82589722 65.06895447 C90.59092988 69.29298698 86.35311043 73.51414084 82.11300659 77.73301697 C83.58594674 81.1489871 85.49171222 83.34493695 88.13204956 85.94737244 C89.37376419 87.1791774 89.37376419 87.1791774 90.64056396 88.43586731 C91.53639191 89.31509857 92.43221985 90.19432983 93.35519409 91.10020447 C94.76087257 92.49431066 96.16654537 93.88842263 97.57188606 95.28286934 C100.53757044 98.22229903 103.51220569 101.15266985 106.48532104 104.08457947 C108.93052699 106.49656359 111.3736977 108.91052828 113.81176758 111.32972717 C115.63902138 113.14196929 117.47078111 114.94968227 119.30755615 116.75227356 C126.08007617 123.4711531 131.21249821 128.57433694 131.36300659 138.54551697 C131.29297644 145.00385321 130.03143708 148.50348965 125.80050659 153.42051697 C120.02253912 158.39225642 115.55766502 159.07329307 108.11300659 159.13145447 C102.43501223 158.37734584 98.42538308 155.42371512 94.30490112 151.60630798 C93.44253845 150.80822723 92.58017578 150.01014648 91.69168091 149.18788147 C87.74999061 145.43544343 83.87774693 141.62153651 80.04269409 137.76036072 C79.2355899 136.95184158 78.42848572 136.14332245 77.59692383 135.31030273 C75.05822786 132.76607762 72.52305987 130.21837111 69.98800659 127.67051697 C68.25126119 125.92874739 66.51428399 124.1872089 64.77706909 122.44590759 C60.55303658 118.21094025 56.33188272 113.97312081 52.11300659 109.73301697 C48.69703646 111.20595711 46.50108661 113.1117226 43.89865112 115.75205994 C42.66684616 116.99377457 42.66684616 116.99377457 41.41015625 118.26057434 C40.53092499 119.15640228 39.65169373 120.05223022 38.74581909 120.97520447 C37.3517129 122.38088295 35.95760093 123.78655575 34.56315422 125.19189644 C31.62372453 128.15758082 28.69335371 131.13221606 25.76144409 134.10533142 C23.34945997 136.55053736 20.93549528 138.99370808 18.51629639 141.43177795 C16.70405427 143.25903176 14.89634129 145.09079148 13.09375 146.92756653 C6.37487046 153.70008655 1.27168662 158.83250859 -8.69949341 158.98301697 C-15.15782965 158.91298682 -18.65746609 157.65144745 -23.57449341 153.42051697 C-28.54623286 147.6425495 -29.22726951 143.17767539 -29.28543091 135.73301697 C-28.53132228 130.05502261 -25.57769156 126.04539346 -21.76028442 121.9249115 C-20.5631633 120.63136749 -20.5631633 120.63136749 -19.34185791 119.31169128 C-15.58941987 115.37000099 -11.77551295 111.49775731 -7.91433716 107.66270447 C-7.10581802 106.85560028 -6.29729889 106.04849609 -5.46427917 105.2169342 C-2.92005406 102.67823824 -0.37234755 100.14307025 2.17550659 97.60801697 C3.91727617 95.87127157 5.65881466 94.13429437 7.40011597 92.39707947 C11.63508331 88.17304695 15.87290275 83.95189309 20.11300659 79.73301697 C18.64006645 76.31704684 16.73430096 74.12109699 14.09396362 71.5186615 C13.26615387 70.69745819 12.43834412 69.87625488 11.58544922 69.03016663 C10.68962128 68.15093536 9.79379333 67.2717041 8.87081909 66.36582947 C7.46514061 64.97172327 6.05946781 63.5776113 4.65412712 62.1831646 C1.68844274 59.2437349 -1.2861925 56.31336408 -4.25930786 53.38145447 C-6.7045138 50.96947035 -9.14768452 48.55550566 -11.58575439 46.13630676 C-13.4130082 44.32406465 -15.24476793 42.51635167 -17.08154297 40.71376038 C-23.85406299 33.99488084 -28.98648503 28.89169699 -29.13699341 18.92051697 C-29.06696326 12.46218073 -27.80542389 8.96254429 -23.57449341 4.04551697 C-16.88751458 -1.70839505 -8.33842685 -3.65939365 0 0 Z " transform="translate(203.88699340820313,5.2669830322265625)" />
-    <path fill="currentColor" d="M0 0 C1.42859344 -0.01925285 1.42859344 -0.01925285 2.88604736 -0.03889465 C3.91719666 -0.04628159 4.94834595 -0.05366852 6.01074219 -0.0612793 C7.61571564 -0.07338692 7.61571564 -0.07338692 9.25311279 -0.08573914 C11.52614726 -0.099585 13.79920257 -0.1103049 16.07226562 -0.11816406 C18.37441183 -0.12961351 20.676533 -0.14995164 22.97851562 -0.1796875 C39.45339137 -0.39245826 53.91909358 0.10470127 68.74511719 8.05200195 C69.41414063 8.39932373 70.08316406 8.74664551 70.77246094 9.10449219 C75.66312024 11.69847591 80.10128774 14.5647327 84.30761719 18.17700195 C84.94570313 18.67329102 85.58378906 19.16958008 86.24121094 19.6809082 C104.65474437 34.57684656 111.25045422 57.42808553 114.74560547 79.9284668 C115.05994079 81.9418854 115.39191687 83.95186294 115.72558594 85.9621582 C118.89328761 105.85375068 118.89328761 105.85375068 114.58105469 113.4230957 C111.69174082 117.40254947 107.86675921 120.32586095 103.30761719 122.17700195 C96.11515752 123.08081633 89.80294866 123.06697498 83.88574219 118.5793457 C74.26762262 110.03255133 74.14842635 94.96664317 72.29003906 82.9152832 C70.03994381 69.09430976 66.42523985 57.50404374 55.20605469 48.48950195 C42.35988766 39.60820129 25.97944268 40.83114407 11.06005859 40.79614258 C8.62645136 40.78657087 6.19407081 40.75278483 3.76074219 40.71606445 C3.03034729 40.72110992 2.29995239 40.7261554 1.54742432 40.73135376 C-4.62796036 40.61458446 -10.07111671 38.76487613 -14.53222656 34.3605957 C-15.07556641 33.4962793 -15.07556641 33.4962793 -15.62988281 32.61450195 C-16.01015625 32.03571289 -16.39042969 31.45692383 -16.78222656 30.8605957 C-19.81998759 25.24138969 -19.68804974 17.84777398 -18.04394531 11.78637695 C-15.80827745 6.78000961 -12.48331736 3.76699673 -7.69238281 1.17700195 C-4.82928529 0.22263611 -2.97601811 0.03502947 0 0 Z " transform="translate(368.6923828125,64.822998046875)" />
+    strokeWidth="1.5"
+  >
+    <path
+      fill="currentColor"
+      d="M0 0 C0.8947554 -0.01283524 1.7895108 -0.02567047 2.71138 -0.03889465 C3.66667099 -0.04628159 4.62196198 -0.05366852 5.60620117 -0.0612793 C6.60117111 -0.06935104 7.59614105 -0.07742279 8.6212616 -0.08573914 C10.72340164 -0.09954428 12.82556377 -0.11028233 14.92773438 -0.11816406 C17.07005412 -0.12969151 19.21234498 -0.15015527 21.35449219 -0.1796875 C24.4594259 -0.22246967 27.56350889 -0.23854696 30.66870117 -0.2487793 C31.61791946 -0.26628738 32.56713776 -0.28379547 33.54512024 -0.30183411 C40.44362901 -0.27951406 46.14213141 1.0231582 51.17651367 5.9934082 C51.53874023 6.56961914 51.9009668 7.14583008 52.27416992 7.73950195 C52.84458008 8.60768555 52.84458008 8.60768555 53.42651367 9.4934082 C56.4642747 15.11261422 56.33233684 22.50622992 54.68823242 28.56762695 C52.45256456 33.57399429 49.12760447 36.58700718 44.33666992 39.17700195 C40.82461932 40.34768549 37.95226216 40.35438655 34.24682617 40.4230957 C32.80736816 40.45608633 31.36791518 40.48929693 29.9284668 40.52270508 C27.67777651 40.5696705 25.42709823 40.61400811 23.17626953 40.65380859 C7.78103553 40.93900039 -7.4255887 41.41384542 -19.53833008 52.30200195 C-25.35719058 58.8020949 -28.54704057 66.53994417 -30.16574097 75.03314209 C-30.28959887 75.68002637 -30.41345678 76.32691064 -30.54106796 76.99339747 C-31.9785984 84.62876253 -33.18151913 92.3022262 -34.37475586 99.97875977 C-34.62945293 101.60174337 -34.88443588 103.22468213 -35.13967896 104.84757996 C-35.68327332 108.30763484 -36.2249403 111.76798361 -36.76504898 115.22858429 C-37.61911162 120.70034563 -38.47792012 126.17135587 -39.33737183 131.64227295 C-41.00332586 142.25110154 -42.66474202 152.86063814 -44.32548523 163.47028351 C-46.44636134 177.01874046 -48.56870814 190.5669648 -50.69639575 204.1143539 C-51.55069132 209.55488866 -52.40239826 214.99582048 -53.25210214 220.43707418 C-53.77936122 223.81024762 -54.30872747 227.18308788 -54.83866501 230.55584145 C-55.08426727 232.12185713 -55.32897668 233.68801314 -55.57273865 235.25431633 C-55.90486411 237.38763514 -56.24013557 239.52043629 -56.57620239 241.65313721 C-56.76311708 242.84765629 -56.95003178 244.04217537 -57.14261055 245.272892 C-57.66333008 248.17700195 -57.66333008 248.17700195 -58.66333008 251.17700195 C-58.03164162 251.17331478 -57.39995316 251.16962761 -56.74912262 251.1658287 C-41.35779939 251.07737775 -25.96656494 251.01124394 -10.57505035 250.96975327 C-3.13172765 250.94915383 4.31142508 250.92108369 11.75463867 250.87524414 C18.24438548 250.83529573 24.73400916 250.8095501 31.22387552 250.80064797 C34.65825048 250.79544665 38.09227327 250.78327728 41.52653503 250.75408173 C45.3664532 250.72501264 49.20564366 250.72104763 53.0456543 250.72290039 C54.17638367 250.70851929 55.30711304 250.69413818 56.47210693 250.67932129 C62.94457338 250.71307649 67.96817581 251.36604426 73.33666992 255.17700195 C75.84838867 257.7434082 75.84838867 257.7434082 78.02416992 260.73950195 C78.42716309 261.28670898 78.83015625 261.83391602 79.24536133 262.39770508 C83.59668189 268.3740205 87.74134952 274.50914874 91.87060547 280.64013672 C92.39307861 281.41542725 92.91555176 282.19071777 93.45385742 282.98950195 C93.9138916 283.67657227 94.37392578 284.36364258 94.84790039 285.0715332 C95.33919434 285.76633789 95.83048828 286.46114258 96.33666992 287.17700195 C96.82725388 288.02782852 97.31783783 288.87865509 97.82328796 289.75526428 C101.57912029 293.37414943 104.99133153 292.97424874 110.03955078 293.03027344 C111.51603088 293.07473854 111.51603088 293.07473854 113.02233887 293.12010193 C116.28214886 293.20848636 119.5407802 293.25712562 122.80151367 293.2980957 C123.91797335 293.31597704 125.03443302 293.33385838 126.18472481 293.35228157 C132.10003605 293.44485005 138.01475367 293.50619593 143.93066406 293.54296875 C150.01974052 293.58702204 156.10113993 293.73804216 162.18761349 293.91442776 C166.8866635 294.03063818 171.58391042 294.065683 176.28427315 294.07948494 C178.52642495 294.10004806 180.76852411 294.15069273 183.00926018 294.23296928 C194.91614789 294.943567 194.91614789 294.943567 205.51167679 290.4505806 C209.42299539 286.23993091 212.28596066 281.53875083 215.01405525 276.50541878 C217.15295426 272.73996196 219.74565488 269.32670463 222.33666992 265.86450195 C222.76743112 265.26513352 223.19819231 264.66576509 223.64200687 264.04823399 C227.78258322 258.33546293 231.64875707 253.73181778 238.33666992 251.17700195 C242.45088941 250.7485944 246.54302322 250.79819344 250.67602539 250.83642578 C251.91560501 250.8359877 253.15518463 250.83554962 254.43232727 250.83509827 C257.81844477 250.83682608 261.20400871 250.85183656 264.59002829 250.87282014 C268.13341728 250.89161648 271.67681421 250.8933397 275.22024536 250.89689636 C281.92435886 250.90620818 288.62832502 250.93081015 295.33237374 250.96094483 C302.96717145 250.99451582 310.60197633 251.01098162 318.23682952 251.02603114 C333.93686155 251.05736057 349.63674671 251.11010413 365.33666992 251.17700195 C365.23644531 250.53744064 365.1362207 249.89787933 365.03295898 249.23893738 C363.98484825 242.53988918 362.94848134 235.83909692 361.91870117 229.13720703 C361.53364771 226.64130473 361.14567241 224.14585127 360.75463867 221.65087891 C360.19082139 218.05007134 359.6377761 214.44774293 359.08666992 210.8449707 C358.82418457 209.19116646 358.82418457 209.19116646 358.55639648 207.50395203 C355.68217643 188.47715381 355.68217643 188.47715381 360.06323242 180.89575195 C362.98262503 176.95546745 366.78214697 174.01493334 371.33666992 172.17700195 C376.91293865 171.5501273 383.14047416 171.07562248 388.27416992 173.67700195 C395.74196343 179.77315992 398.25627165 185.69670539 399.44897461 195.1237793 C399.76245384 197.27536748 400.07706311 199.42679128 400.3927002 201.57806396 C400.62321327 203.22315571 400.62321327 203.22315571 400.85838318 204.90148163 C401.46193937 209.03490286 402.18441629 213.14187528 402.91604233 217.25422478 C408.80648822 250.5867666 410.49692393 283.07092085 410.11914062 316.87121582 C410.07508858 321.86482979 410.07729081 326.85802204 410.07969284 331.8517971 C410.07860178 336.74040786 410.05663198 341.62874294 410.02768707 346.51726151 C410.01513515 348.80945405 410.00711751 351.10167689 410.00411224 353.39390182 C409.96039405 369.2246221 409.23429308 384.3603465 401.52416992 398.61450195 C401.17652588 399.27861084 400.82888184 399.94271973 400.47070312 400.62695312 C397.61183813 405.95060397 394.42292306 410.7074077 390.33666992 415.17700195 C389.53616211 416.0690332 388.7356543 416.96106445 387.91088867 417.88012695 C374.77391357 431.79657525 356.93675084 440.99197477 337.69781911 442.45341957 C333.66429592 442.5640469 329.64110172 442.58258527 325.60661316 442.56468201 C324.05586768 442.56886368 322.50512527 442.57434574 320.95438844 442.58100182 C316.72759607 442.59536598 312.50100018 442.5912402 308.27419746 442.58383501 C303.70214346 442.57908308 299.13013075 442.59163104 294.55809021 442.60185242 C285.61423681 442.61900656 276.67045378 442.61988742 267.72658821 442.61463951 C260.45300076 442.61059006 253.17943402 442.61205057 245.90584755 442.61738777 C244.35011521 442.6185104 244.35011521 442.6185104 242.76295394 442.61965572 C240.65563358 442.62118727 238.54831322 442.62272562 236.44099287 442.62427069 C216.69992808 442.63798363 196.95890297 442.63256665 177.2178391 442.62108547 C159.18135979 442.61115566 141.14498311 442.62409158 123.10851964 442.64801966 C104.56225663 442.67243756 86.01604137 442.68201184 67.46976262 442.67536694 C57.06803453 442.67188053 46.66638531 442.67406844 36.26466942 442.69161797 C27.40946025 442.70637367 18.55438552 442.70693153 9.6991789 442.68954705 C5.18675345 442.68106214 0.6745678 442.67882572 -3.83784485 442.69419861 C-7.97894922 442.70813112 -12.1196103 442.70317394 -16.26068958 442.68395937 C-17.74846153 442.68022508 -19.23626973 442.68304599 -20.72400913 442.69357102 C-34.03367194 442.78093872 -47.25174214 440.77371558 -59.10083008 434.36450195 C-59.76493896 434.01685791 -60.42904785 433.66921387 -61.11328125 433.31103516 C-66.4369321 430.45217017 -71.19373583 427.26325509 -75.66333008 423.17700195 C-76.55536133 422.37649414 -77.44739258 421.57598633 -78.36645508 420.7512207 C-100.77741132 399.59552294 -103.5749002 372.62623682 -104.50244141 343.55834961 C-104.61961301 339.09820947 -104.7092159 334.63796761 -104.78833008 330.17700195 C-104.8099609 329.04282585 -104.83159172 327.90864975 -104.85387802 326.74010468 C-105.7989689 270.04942585 -96.53237894 214.60015523 -87.47583008 158.80200195 C-87.11183774 156.55255646 -86.74787745 154.30310578 -86.38394928 152.0536499 C-83.95075001 137.03673077 -81.46311716 122.02941974 -78.93286133 107.02856445 C-78.76680885 106.04043149 -78.60075637 105.05229852 -78.429672 104.03422213 C-77.47633298 98.36468984 -76.51110162 92.69742951 -75.52717948 87.03312111 C-75.23420142 85.33991859 -74.94431604 83.64617704 -74.6580317 81.95182991 C-73.22865326 73.51697698 -71.56060061 65.24283919 -69.17655945 57.02059937 C-68.88434312 56.00697545 -68.88434312 56.00697545 -68.58622342 54.97287428 C-62.51742786 34.96610054 -48.56017387 18.91098437 -30.35083008 8.92700195 C-21.04317184 4.01246403 -10.6291221 0.13381287 0 0 Z M-62.66333008 291.17700195 C-62.70991197 300.22698633 -62.74532951 309.27692867 -62.76695442 318.32700729 C-62.77733943 322.53046693 -62.79140065 326.73384382 -62.81420898 330.93725586 C-62.83612766 335.00269623 -62.8479383 339.0680576 -62.85308456 343.13355255 C-62.8567465 344.67549124 -62.86389604 346.21742619 -62.87479019 347.75933075 C-62.98764254 364.41203534 -61.77767892 378.47786121 -49.90551758 391.1340332 C-37.89031169 402.08168595 -23.81272066 402.329555 -8.41876221 402.31071472 C-6.96847975 402.31258473 -5.51819779 402.3148862 -4.06791663 402.31758004 C-0.09579902 402.32368093 3.87629749 402.32356647 7.84841871 402.32238567 C12.1375762 402.32218123 16.426727 402.32770455 20.71588135 402.33244324 C29.11428933 402.34074098 37.51269029 402.34349768 45.91110203 402.34405562 C52.73956637 402.34453119 59.5680284 402.34658804 66.396492 402.34975624 C85.76725003 402.35856045 105.13800253 402.36317599 124.50876257 402.36242577 C125.5525091 402.36238581 126.59625564 402.36234585 127.67163086 402.36230469 C128.71665552 402.36226381 129.76168018 402.36222293 130.83837226 402.36218081 C147.77206575 402.36177441 164.705737 402.37134297 181.63942406 402.38544305 C199.03740777 402.39981514 216.43538065 402.40671278 233.83337045 402.40584928 C243.59674535 402.40551759 253.36009694 402.40825212 263.12346649 402.41902733 C271.4364965 402.42814328 279.74949263 402.43029858 288.06252548 402.42351791 C292.30094913 402.42025823 296.5393078 402.42017603 300.77772522 402.42887115 C304.66396174 402.43676153 308.55008203 402.43527896 312.4363158 402.42658702 C313.83601227 402.42505761 315.23571751 402.42684696 316.6354036 402.4324471 C332.81740011 402.49286048 346.11816219 400.8404915 358.29370117 389.41918945 C367.36166661 379.46696735 369.47353947 367.82394758 369.45019531 354.7512207 C369.45041435 353.71071312 369.45041435 353.71071312 369.45063782 352.64918518 C369.44994877 350.38759075 369.44220431 348.12608175 369.43432617 345.86450195 C369.4324584 344.28409876 369.43103619 342.70369499 369.43003845 341.12329102 C369.42624154 336.98710499 369.41643574 332.85095473 369.40533447 328.71478271 C369.39505924 324.48474613 369.3905278 320.2547037 369.38549805 316.0246582 C369.37481063 307.74208981 369.3577686 299.45955034 369.33666992 291.17700195 C354.64632238 290.87259823 339.95639491 290.64373115 325.26352882 290.50344372 C318.44031653 290.43655654 311.61906936 290.34547117 304.79711914 290.19628906 C298.2095233 290.05230114 291.62342689 289.97724095 285.03419113 289.94359779 C282.52456973 289.91963419 280.0150561 289.87283364 277.50630569 289.80251122 C263.71306295 288.73932044 263.71306295 288.73932044 251.64248657 293.97305298 C248.96533803 297.07759668 247.15016483 300.50543769 245.33666992 304.17700195 C244.13740988 305.94582386 242.91596198 307.70017653 241.65698242 309.42700195 C240.58782786 311.00760306 239.52260758 312.59087377 238.46166992 314.17700195 C236.43736678 317.18935781 234.39579907 320.1883739 232.33666992 323.17700195 C231.7153418 324.10512695 231.09401367 325.03325195 230.45385742 325.98950195 C225.73843285 330.86152734 220.83508255 332.40511899 214.22741699 332.68493652 C211.8114743 332.70858756 209.39525497 332.71035962 206.97924805 332.69458008 C205.64130393 332.7000088 204.30336579 332.70713566 202.96543884 332.71582031 C199.35170358 332.7339679 195.738428 332.72702207 192.12468529 332.71430397 C188.33144322 332.70413155 184.53823883 332.71358137 180.74499512 332.71984863 C174.3765562 332.72711276 168.00830322 332.71756994 161.63989258 332.69848633 C154.29160361 332.67671981 146.94375866 332.68377207 139.59548044 332.70579195 C133.27079183 332.72398133 126.94623639 332.72648706 120.62153006 332.71603727 C116.85088931 332.70982169 113.08045683 332.70891299 109.30982971 332.72218323 C105.76373719 332.73379294 102.21821356 332.72562394 98.67218208 332.7026062 C96.76058343 332.69484987 94.84893629 332.70663125 92.93736267 332.71911621 C85.20544781 332.6434241 79.25343507 331.93988157 73.44140625 326.35620117 C73.02141357 325.7376123 72.6014209 325.11902344 72.16870117 324.48168945 C71.67402344 323.77391357 71.1793457 323.0661377 70.66967773 322.33691406 C69.91702637 321.20588257 69.91702637 321.20588257 69.14916992 320.05200195 C68.03637573 318.44619557 66.92307854 316.84073766 65.80932617 315.2355957 C65.24358887 314.40785645 64.67785156 313.58011719 64.0949707 312.72729492 C61.16177295 308.47289562 58.12051565 304.2973972 55.08666992 300.11450195 C54.52568604 299.33510254 53.96470215 298.55570312 53.38671875 297.75268555 C52.87004639 297.0354834 52.35337402 296.31828125 51.82104492 295.5793457 C51.36439453 294.94504639 50.90774414 294.31074707 50.43725586 293.65722656 C49.41341543 292.20523599 49.41341543 292.20523599 48.33666992 291.17700195 C46.89452993 291.0814216 45.44772913 291.05511801 44.00242615 291.05674744 C43.06708038 291.05537277 42.13173462 291.05399811 41.16804504 291.05258179 C40.13370834 291.05617706 39.09937164 291.05977234 38.03369141 291.06347656 C36.95089905 291.06333054 35.86810669 291.06318451 34.75250244 291.06303406 C31.15423618 291.06373372 27.55602095 291.07152862 23.95776367 291.0793457 C21.47054574 291.08120969 18.98332744 291.08263368 16.49610901 291.08363342 C10.60645801 291.08706845 4.71682602 291.09495918 -1.17281717 291.10498291 C-8.53358382 291.11723949 -15.89435272 291.12262404 -23.25512695 291.12817383 C-36.39120406 291.13891381 -49.5272659 291.15580106 -62.66333008 291.17700195 Z "
+      transform="translate(102.663330078125,64.822998046875)"
+    />
+    <path
+      fill="currentColor"
+      d="M0 0 C3.06426658 1.7058833 5.35525528 3.48259627 7.92111206 5.85972595 C8.78347473 6.6578067 9.6458374 7.45588745 10.53433228 8.27815247 C14.47602257 12.0305905 18.34826625 15.84449743 22.18331909 19.70567322 C22.99042328 20.51419235 23.79752747 21.32271149 24.62908936 22.1557312 C27.16778532 24.69995632 29.70295331 27.24766283 32.23800659 29.79551697 C33.97475199 31.53728655 35.71172919 33.27882503 37.44894409 35.02012634 C41.67297661 39.25509368 45.89413047 43.49291313 50.11300659 47.73301697 C53.52897672 46.26007682 55.72492657 44.35431134 58.32736206 41.713974 C59.14856537 40.88616425 59.96976868 40.05835449 60.81585693 39.20545959 C61.6950882 38.30963165 62.57431946 37.41380371 63.48019409 36.49082947 C64.87430029 35.08515099 66.26841226 33.67947819 67.66285896 32.2741375 C70.60228866 29.30845312 73.53265947 26.33381787 76.46456909 23.36070251 C78.87655321 20.91549657 81.2905179 18.47232586 83.7097168 16.03425598 C85.52195891 14.20700218 87.32967189 12.37524245 89.13226318 10.53846741 C95.85114272 3.76594739 100.95432657 -1.36647465 110.92550659 -1.51698303 C117.38384283 -1.44695288 120.88347927 -0.18541352 125.80050659 4.04551697 C130.77224605 9.82348444 131.4532827 14.28835854 131.51144409 21.73301697 C130.75733547 27.41101133 127.80370474 31.42064047 123.98629761 35.54112244 C122.78917648 36.83466644 122.78917648 36.83466644 121.56787109 38.15434265 C117.81543306 42.09603295 114.00152613 45.96827662 110.14035034 49.80332947 C109.33183121 50.61043365 108.52331207 51.41753784 107.69029236 52.24909973 C105.14606724 54.7877957 102.59836073 57.32296369 100.05050659 59.85801697 C98.30873701 61.59476237 96.56719853 63.33173957 94.82589722 65.06895447 C90.59092988 69.29298698 86.35311043 73.51414084 82.11300659 77.73301697 C83.58594674 81.1489871 85.49171222 83.34493695 88.13204956 85.94737244 C89.37376419 87.1791774 89.37376419 87.1791774 90.64056396 88.43586731 C91.53639191 89.31509857 92.43221985 90.19432983 93.35519409 91.10020447 C94.76087257 92.49431066 96.16654537 93.88842263 97.57188606 95.28286934 C100.53757044 98.22229903 103.51220569 101.15266985 106.48532104 104.08457947 C108.93052699 106.49656359 111.3736977 108.91052828 113.81176758 111.32972717 C115.63902138 113.14196929 117.47078111 114.94968227 119.30755615 116.75227356 C126.08007617 123.4711531 131.21249821 128.57433694 131.36300659 138.54551697 C131.29297644 145.00385321 130.03143708 148.50348965 125.80050659 153.42051697 C120.02253912 158.39225642 115.55766502 159.07329307 108.11300659 159.13145447 C102.43501223 158.37734584 98.42538308 155.42371512 94.30490112 151.60630798 C93.44253845 150.80822723 92.58017578 150.01014648 91.69168091 149.18788147 C87.74999061 145.43544343 83.87774693 141.62153651 80.04269409 137.76036072 C79.2355899 136.95184158 78.42848572 136.14332245 77.59692383 135.31030273 C75.05822786 132.76607762 72.52305987 130.21837111 69.98800659 127.67051697 C68.25126119 125.92874739 66.51428399 124.1872089 64.77706909 122.44590759 C60.55303658 118.21094025 56.33188272 113.97312081 52.11300659 109.73301697 C48.69703646 111.20595711 46.50108661 113.1117226 43.89865112 115.75205994 C42.66684616 116.99377457 42.66684616 116.99377457 41.41015625 118.26057434 C40.53092499 119.15640228 39.65169373 120.05223022 38.74581909 120.97520447 C37.3517129 122.38088295 35.95760093 123.78655575 34.56315422 125.19189644 C31.62372453 128.15758082 28.69335371 131.13221606 25.76144409 134.10533142 C23.34945997 136.55053736 20.93549528 138.99370808 18.51629639 141.43177795 C16.70405427 143.25903176 14.89634129 145.09079148 13.09375 146.92756653 C6.37487046 153.70008655 1.27168662 158.83250859 -8.69949341 158.98301697 C-15.15782965 158.91298682 -18.65746609 157.65144745 -23.57449341 153.42051697 C-28.54623286 147.6425495 -29.22726951 143.17767539 -29.28543091 135.73301697 C-28.53132228 130.05502261 -25.57769156 126.04539346 -21.76028442 121.9249115 C-20.5631633 120.63136749 -20.5631633 120.63136749 -19.34185791 119.31169128 C-15.58941987 115.37000099 -11.77551295 111.49775731 -7.91433716 107.66270447 C-7.10581802 106.85560028 -6.29729889 106.04849609 -5.46427917 105.2169342 C-2.92005406 102.67823824 -0.37234755 100.14307025 2.17550659 97.60801697 C3.91727617 95.87127157 5.65881466 94.13429437 7.40011597 92.39707947 C11.63508331 88.17304695 15.87290275 83.95189309 20.11300659 79.73301697 C18.64006645 76.31704684 16.73430096 74.12109699 14.09396362 71.5186615 C13.26615387 70.69745819 12.43834412 69.87625488 11.58544922 69.03016663 C10.68962128 68.15093536 9.79379333 67.2717041 8.87081909 66.36582947 C7.46514061 64.97172327 6.05946781 63.5776113 4.65412712 62.1831646 C1.68844274 59.2437349 -1.2861925 56.31336408 -4.25930786 53.38145447 C-6.7045138 50.96947035 -9.14768452 48.55550566 -11.58575439 46.13630676 C-13.4130082 44.32406465 -15.24476793 42.51635167 -17.08154297 40.71376038 C-23.85406299 33.99488084 -28.98648503 28.89169699 -29.13699341 18.92051697 C-29.06696326 12.46218073 -27.80542389 8.96254429 -23.57449341 4.04551697 C-16.88751458 -1.70839505 -8.33842685 -3.65939365 0 0 Z "
+      transform="translate(203.88699340820313,5.2669830322265625)"
+    />
+    <path
+      fill="currentColor"
+      d="M0 0 C1.42859344 -0.01925285 1.42859344 -0.01925285 2.88604736 -0.03889465 C3.91719666 -0.04628159 4.94834595 -0.05366852 6.01074219 -0.0612793 C7.61571564 -0.07338692 7.61571564 -0.07338692 9.25311279 -0.08573914 C11.52614726 -0.099585 13.79920257 -0.1103049 16.07226562 -0.11816406 C18.37441183 -0.12961351 20.676533 -0.14995164 22.97851562 -0.1796875 C39.45339137 -0.39245826 53.91909358 0.10470127 68.74511719 8.05200195 C69.41414063 8.39932373 70.08316406 8.74664551 70.77246094 9.10449219 C75.66312024 11.69847591 80.10128774 14.5647327 84.30761719 18.17700195 C84.94570313 18.67329102 85.58378906 19.16958008 86.24121094 19.6809082 C104.65474437 34.57684656 111.25045422 57.42808553 114.74560547 79.9284668 C115.05994079 81.9418854 115.39191687 83.95186294 115.72558594 85.9621582 C118.89328761 105.85375068 118.89328761 105.85375068 114.58105469 113.4230957 C111.69174082 117.40254947 107.86675921 120.32586095 103.30761719 122.17700195 C96.11515752 123.08081633 89.80294866 123.06697498 83.88574219 118.5793457 C74.26762262 110.03255133 74.14842635 94.96664317 72.29003906 82.9152832 C70.03994381 69.09430976 66.42523985 57.50404374 55.20605469 48.48950195 C42.35988766 39.60820129 25.97944268 40.83114407 11.06005859 40.79614258 C8.62645136 40.78657087 6.19407081 40.75278483 3.76074219 40.71606445 C3.03034729 40.72110992 2.29995239 40.7261554 1.54742432 40.73135376 C-4.62796036 40.61458446 -10.07111671 38.76487613 -14.53222656 34.3605957 C-15.07556641 33.4962793 -15.07556641 33.4962793 -15.62988281 32.61450195 C-16.01015625 32.03571289 -16.39042969 31.45692383 -16.78222656 30.8605957 C-19.81998759 25.24138969 -19.68804974 17.84777398 -18.04394531 11.78637695 C-15.80827745 6.78000961 -12.48331736 3.76699673 -7.69238281 1.17700195 C-4.82928529 0.22263611 -2.97601811 0.03502947 0 0 Z "
+      transform="translate(368.6923828125,64.822998046875)"
+    />
   </svg>
-)
+);
 
 export const JpgIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M4 0C3.3125 0 2.75 0.5625 2.75 1.25V18.75C2.75 19.4375 3.3125 20 4 20H16.5C17.1875 20 17.75 19.4375 17.75 18.75V5L12.75 0H4Z" fill="#CACACC" />
-    <path d="M14 5H17.75L12.75 0V3.75C12.75 4.4375 13.3125 5 14 5Z" fill="#9FA7AD" />
+  <svg
+    width="18"
+    height="20"
+    viewBox="0 0 18 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M4 0C3.3125 0 2.75 0.5625 2.75 1.25V18.75C2.75 19.4375 3.3125 20 4 20H16.5C17.1875 20 17.75 19.4375 17.75 18.75V5L12.75 0H4Z"
+      fill="#CACACC"
+    />
+    <path
+      d="M14 5H17.75L12.75 0V3.75C12.75 4.4375 13.3125 5 14 5Z"
+      fill="#9FA7AD"
+    />
     <path d="M17.75 8.75L14 5H17.75V8.75Z" fill="#B2B8BE" />
-    <rect width="15" height="7.5" transform="translate(0.25 9.375)" fill="#F15642" />
-    <path d="M4.64586 11.4886H5.29927V14.0455C5.29809 14.2798 5.24837 14.4817 5.15012 14.6509C5.05188 14.819 4.91457 14.9486 4.73819 15.0398C4.563 15.1297 4.35881 15.1747 4.12562 15.1747C3.91255 15.1747 3.72079 15.1368 3.55034 15.0611C3.38107 14.9841 3.24672 14.8705 3.14728 14.7202C3.04785 14.5698 2.99814 14.3828 2.99814 14.1591H3.65332C3.6545 14.2573 3.67581 14.342 3.71724 14.413C3.75985 14.484 3.81845 14.5385 3.89302 14.5763C3.9676 14.6142 4.05342 14.6332 4.15048 14.6332C4.25583 14.6332 4.3452 14.6113 4.41859 14.5675C4.49198 14.5225 4.54761 14.4562 4.58549 14.3686C4.62456 14.281 4.64468 14.1733 4.64586 14.0455V11.4886ZM6.01394 15.125V11.4886H7.37757C7.65693 11.4886 7.89131 11.5407 8.0807 11.6449C8.27128 11.7491 8.4151 11.8923 8.51216 12.0746C8.61041 12.2557 8.65953 12.4616 8.65953 12.6925C8.65953 12.9257 8.61041 13.1328 8.51216 13.3139C8.41391 13.495 8.26891 13.6377 8.07715 13.7418C7.88539 13.8448 7.64924 13.8963 7.3687 13.8963H6.46493V13.3548H7.27992C7.44327 13.3548 7.57703 13.3263 7.6812 13.2695C7.78536 13.2127 7.8623 13.1346 7.91202 13.0352C7.96292 12.9357 7.98837 12.8215 7.98837 12.6925C7.98837 12.5634 7.96292 12.4498 7.91202 12.3516C7.8623 12.2533 7.78477 12.177 7.67942 12.1225C7.57525 12.0669 7.4409 12.0391 7.27637 12.0391H6.67267V15.125H6.01394ZM11.6678 12.6499C11.6382 12.554 11.5974 12.4682 11.5453 12.3924C11.4944 12.3155 11.4328 12.2498 11.3606 12.1953C11.2896 12.1409 11.2079 12.1 11.1156 12.0728C11.0233 12.0444 10.9226 12.0302 10.8137 12.0302C10.6184 12.0302 10.4444 12.0793 10.2917 12.1776C10.139 12.2758 10.0189 12.4202 9.93129 12.6108C9.84487 12.8002 9.80167 13.031 9.80167 13.3033C9.80167 13.5779 9.84487 13.8105 9.93129 14.0011C10.0177 14.1916 10.1378 14.3366 10.2917 14.4361C10.4456 14.5343 10.6243 14.5835 10.8279 14.5835C11.0126 14.5835 11.1724 14.5479 11.3074 14.4769C11.4435 14.4059 11.5482 14.3053 11.6216 14.1751C11.695 14.0437 11.7317 13.8898 11.7317 13.7134L11.8809 13.7365H10.8936V13.2216H12.3691V13.6584C12.3691 13.9697 12.3029 14.239 12.1703 14.4663C12.0377 14.6935 11.8554 14.8687 11.6234 14.9918C11.3914 15.1138 11.1251 15.1747 10.8244 15.1747C10.4894 15.1747 10.1953 15.0996 9.94194 14.9492C9.68981 14.7977 9.49272 14.5829 9.35067 14.3047C9.20981 14.0253 9.13938 13.6939 9.13938 13.3104C9.13938 13.0168 9.18081 12.7546 9.26367 12.5238C9.34772 12.293 9.4649 12.0971 9.61523 11.9361C9.76557 11.7739 9.94194 11.6508 10.1444 11.5668C10.3468 11.4815 10.5669 11.4389 10.8049 11.4389C11.0061 11.4389 11.1937 11.4685 11.3677 11.5277C11.5417 11.5857 11.6962 11.6686 11.8311 11.7763C11.9673 11.884 12.0791 12.0118 12.1667 12.1598C12.2543 12.3078 12.3117 12.4711 12.339 12.6499H11.6678Z" fill="white" />
+    <rect
+      width="15"
+      height="7.5"
+      transform="translate(0.25 9.375)"
+      fill="#F15642"
+    />
+    <path
+      d="M4.64586 11.4886H5.29927V14.0455C5.29809 14.2798 5.24837 14.4817 5.15012 14.6509C5.05188 14.819 4.91457 14.9486 4.73819 15.0398C4.563 15.1297 4.35881 15.1747 4.12562 15.1747C3.91255 15.1747 3.72079 15.1368 3.55034 15.0611C3.38107 14.9841 3.24672 14.8705 3.14728 14.7202C3.04785 14.5698 2.99814 14.3828 2.99814 14.1591H3.65332C3.6545 14.2573 3.67581 14.342 3.71724 14.413C3.75985 14.484 3.81845 14.5385 3.89302 14.5763C3.9676 14.6142 4.05342 14.6332 4.15048 14.6332C4.25583 14.6332 4.3452 14.6113 4.41859 14.5675C4.49198 14.5225 4.54761 14.4562 4.58549 14.3686C4.62456 14.281 4.64468 14.1733 4.64586 14.0455V11.4886ZM6.01394 15.125V11.4886H7.37757C7.65693 11.4886 7.89131 11.5407 8.0807 11.6449C8.27128 11.7491 8.4151 11.8923 8.51216 12.0746C8.61041 12.2557 8.65953 12.4616 8.65953 12.6925C8.65953 12.9257 8.61041 13.1328 8.51216 13.3139C8.41391 13.495 8.26891 13.6377 8.07715 13.7418C7.88539 13.8448 7.64924 13.8963 7.3687 13.8963H6.46493V13.3548H7.27992C7.44327 13.3548 7.57703 13.3263 7.6812 13.2695C7.78536 13.2127 7.8623 13.1346 7.91202 13.0352C7.96292 12.9357 7.98837 12.8215 7.98837 12.6925C7.98837 12.5634 7.96292 12.4498 7.91202 12.3516C7.8623 12.2533 7.78477 12.177 7.67942 12.1225C7.57525 12.0669 7.4409 12.0391 7.27637 12.0391H6.67267V15.125H6.01394ZM11.6678 12.6499C11.6382 12.554 11.5974 12.4682 11.5453 12.3924C11.4944 12.3155 11.4328 12.2498 11.3606 12.1953C11.2896 12.1409 11.2079 12.1 11.1156 12.0728C11.0233 12.0444 10.9226 12.0302 10.8137 12.0302C10.6184 12.0302 10.4444 12.0793 10.2917 12.1776C10.139 12.2758 10.0189 12.4202 9.93129 12.6108C9.84487 12.8002 9.80167 13.031 9.80167 13.3033C9.80167 13.5779 9.84487 13.8105 9.93129 14.0011C10.0177 14.1916 10.1378 14.3366 10.2917 14.4361C10.4456 14.5343 10.6243 14.5835 10.8279 14.5835C11.0126 14.5835 11.1724 14.5479 11.3074 14.4769C11.4435 14.4059 11.5482 14.3053 11.6216 14.1751C11.695 14.0437 11.7317 13.8898 11.7317 13.7134L11.8809 13.7365H10.8936V13.2216H12.3691V13.6584C12.3691 13.9697 12.3029 14.239 12.1703 14.4663C12.0377 14.6935 11.8554 14.8687 11.6234 14.9918C11.3914 15.1138 11.1251 15.1747 10.8244 15.1747C10.4894 15.1747 10.1953 15.0996 9.94194 14.9492C9.68981 14.7977 9.49272 14.5829 9.35067 14.3047C9.20981 14.0253 9.13938 13.6939 9.13938 13.3104C9.13938 13.0168 9.18081 12.7546 9.26367 12.5238C9.34772 12.293 9.4649 12.0971 9.61523 11.9361C9.76557 11.7739 9.94194 11.6508 10.1444 11.5668C10.3468 11.4815 10.5669 11.4389 10.8049 11.4389C11.0061 11.4389 11.1937 11.4685 11.3677 11.5277C11.5417 11.5857 11.6962 11.6686 11.8311 11.7763C11.9673 11.884 12.0791 12.0118 12.1667 12.1598C12.2543 12.3078 12.3117 12.4711 12.339 12.6499H11.6678Z"
+      fill="white"
+    />
   </svg>
-)
+);
 
 export const PdfIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M4 0C3.3125 0 2.75 0.5625 2.75 1.25V18.75C2.75 19.4375 3.3125 20 4 20H16.5C17.1875 20 17.75 19.4375 17.75 18.75V5L12.75 0H4Z" fill="#CACACC" />
-    <path d="M14 5H17.75L12.75 0V3.75C12.75 4.4375 13.3125 5 14 5Z" fill="#9FA7AD" />
+  <svg
+    width="18"
+    height="20"
+    viewBox="0 0 18 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M4 0C3.3125 0 2.75 0.5625 2.75 1.25V18.75C2.75 19.4375 3.3125 20 4 20H16.5C17.1875 20 17.75 19.4375 17.75 18.75V5L12.75 0H4Z"
+      fill="#CACACC"
+    />
+    <path
+      d="M14 5H17.75L12.75 0V3.75C12.75 4.4375 13.3125 5 14 5Z"
+      fill="#9FA7AD"
+    />
     <path d="M17.75 8.75L14 5H17.75V8.75Z" fill="#B2B8BE" />
-    <rect width="15" height="7.5" transform="translate(0.25 9.375)" fill="#F15642" />
-    <path d="M3.22341 15.125V11.4886H4.58705C4.8664 11.4886 5.10078 11.5407 5.29017 11.6449C5.48075 11.7491 5.62457 11.8923 5.72164 12.0746C5.81988 12.2557 5.86901 12.4616 5.86901 12.6925C5.86901 12.9257 5.81988 13.1328 5.72164 13.3139C5.62339 13.495 5.47838 13.6377 5.28662 13.7418C5.09486 13.8448 4.85871 13.8963 4.57817 13.8963H3.67441V13.3548H4.48939C4.65274 13.3548 4.7865 13.3263 4.89067 13.2695C4.99484 13.2127 5.07178 13.1346 5.12149 13.0352C5.17239 12.9357 5.19784 12.8215 5.19784 12.6925C5.19784 12.5634 5.17239 12.4498 5.12149 12.3516C5.07178 12.2533 4.99424 12.177 4.88889 12.1225C4.78473 12.0669 4.65038 12.0391 4.48584 12.0391H3.88215V15.125H3.22341ZM7.67343 15.125H6.44118V11.4886H7.69829C8.05932 11.4886 8.36945 11.5614 8.62868 11.707C8.8891 11.8514 9.08915 12.0592 9.22883 12.3303C9.3685 12.6013 9.43834 12.9257 9.43834 13.3033C9.43834 13.6821 9.36791 14.0076 9.22705 14.2798C9.08737 14.5521 8.88555 14.761 8.62158 14.9066C8.3588 15.0522 8.04275 15.125 7.67343 15.125ZM7.09992 14.555H7.64147C7.89478 14.555 8.10608 14.5089 8.27535 14.4165C8.44462 14.323 8.57187 14.1839 8.65709 13.9993C8.74232 13.8134 8.78493 13.5814 8.78493 13.3033C8.78493 13.0251 8.74232 12.7943 8.65709 12.6108C8.57187 12.4261 8.4458 12.2882 8.2789 12.1971C8.11318 12.1048 7.90721 12.0586 7.661 12.0586H7.09992V14.555ZM10.0642 15.125V11.4886H12.3938V12.0408H10.723V13.0281H12.234V13.5803H10.723V15.125H10.0642Z" fill="white" />
+    <rect
+      width="15"
+      height="7.5"
+      transform="translate(0.25 9.375)"
+      fill="#F15642"
+    />
+    <path
+      d="M3.22341 15.125V11.4886H4.58705C4.8664 11.4886 5.10078 11.5407 5.29017 11.6449C5.48075 11.7491 5.62457 11.8923 5.72164 12.0746C5.81988 12.2557 5.86901 12.4616 5.86901 12.6925C5.86901 12.9257 5.81988 13.1328 5.72164 13.3139C5.62339 13.495 5.47838 13.6377 5.28662 13.7418C5.09486 13.8448 4.85871 13.8963 4.57817 13.8963H3.67441V13.3548H4.48939C4.65274 13.3548 4.7865 13.3263 4.89067 13.2695C4.99484 13.2127 5.07178 13.1346 5.12149 13.0352C5.17239 12.9357 5.19784 12.8215 5.19784 12.6925C5.19784 12.5634 5.17239 12.4498 5.12149 12.3516C5.07178 12.2533 4.99424 12.177 4.88889 12.1225C4.78473 12.0669 4.65038 12.0391 4.48584 12.0391H3.88215V15.125H3.22341ZM7.67343 15.125H6.44118V11.4886H7.69829C8.05932 11.4886 8.36945 11.5614 8.62868 11.707C8.8891 11.8514 9.08915 12.0592 9.22883 12.3303C9.3685 12.6013 9.43834 12.9257 9.43834 13.3033C9.43834 13.6821 9.36791 14.0076 9.22705 14.2798C9.08737 14.5521 8.88555 14.761 8.62158 14.9066C8.3588 15.0522 8.04275 15.125 7.67343 15.125ZM7.09992 14.555H7.64147C7.89478 14.555 8.10608 14.5089 8.27535 14.4165C8.44462 14.323 8.57187 14.1839 8.65709 13.9993C8.74232 13.8134 8.78493 13.5814 8.78493 13.3033C8.78493 13.0251 8.74232 12.7943 8.65709 12.6108C8.57187 12.4261 8.4458 12.2882 8.2789 12.1971C8.11318 12.1048 7.90721 12.0586 7.661 12.0586H7.09992V14.555ZM10.0642 15.125V11.4886H12.3938V12.0408H10.723V13.0281H12.234V13.5803H10.723V15.125H10.0642Z"
+      fill="white"
+    />
   </svg>
-)
+);
 
 export const PngIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M4 0C3.3125 0 2.75 0.5625 2.75 1.25V18.75C2.75 19.4375 3.3125 20 4 20H16.5C17.1875 20 17.75 19.4375 17.75 18.75V5L12.75 0H4Z" fill="#CACACC" />
-    <path d="M14 5H17.75L12.75 0V3.75C12.75 4.4375 13.3125 5 14 5Z" fill="#9FA7AD" />
+  <svg
+    width="18"
+    height="20"
+    viewBox="0 0 18 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M4 0C3.3125 0 2.75 0.5625 2.75 1.25V18.75C2.75 19.4375 3.3125 20 4 20H16.5C17.1875 20 17.75 19.4375 17.75 18.75V5L12.75 0H4Z"
+      fill="#CACACC"
+    />
+    <path
+      d="M14 5H17.75L12.75 0V3.75C12.75 4.4375 13.3125 5 14 5Z"
+      fill="#9FA7AD"
+    />
     <path d="M17.75 8.75L14 5H17.75V8.75Z" fill="#B2B8BE" />
-    <rect width="15" height="7.5" transform="translate(0.25 9.375)" fill="#F15642" />
-    <path d="M2.75954 15.125V11.4886H4.12318C4.40254 11.4886 4.63691 11.5407 4.82631 11.6449C5.01688 11.7491 5.1607 11.8923 5.25777 12.0746C5.35602 12.2557 5.40514 12.4616 5.40514 12.6925C5.40514 12.9257 5.35602 13.1328 5.25777 13.3139C5.15952 13.495 5.01452 13.6377 4.82275 13.7418C4.63099 13.8448 4.39484 13.8963 4.1143 13.8963H3.21054V13.3548H4.02552C4.18888 13.3548 4.32264 13.3263 4.4268 13.2695C4.53097 13.2127 4.60791 13.1346 4.65763 13.0352C4.70853 12.9357 4.73398 12.8215 4.73398 12.6925C4.73398 12.5634 4.70853 12.4498 4.65763 12.3516C4.60791 12.2533 4.53038 12.177 4.42503 12.1225C4.32086 12.0669 4.18651 12.0391 4.02197 12.0391H3.41828V15.125H2.75954ZM8.9656 11.4886V15.125H8.37966L6.66624 12.6481H6.63605V15.125H5.97732V11.4886H6.56681L8.27845 13.9673H8.31041V11.4886H8.9656ZM12.1195 12.6499C12.0899 12.554 12.049 12.4682 11.9969 12.3924C11.946 12.3155 11.8845 12.2498 11.8123 12.1953C11.7413 12.1409 11.6596 12.1 11.5672 12.0728C11.4749 12.0444 11.3743 12.0302 11.2654 12.0302C11.0701 12.0302 10.8961 12.0793 10.7434 12.1776C10.5907 12.2758 10.4705 12.4202 10.3829 12.6108C10.2965 12.8002 10.2533 13.031 10.2533 13.3033C10.2533 13.5779 10.2965 13.8105 10.3829 14.0011C10.4694 14.1916 10.5895 14.3366 10.7434 14.4361C10.8973 14.5343 11.076 14.5835 11.2796 14.5835C11.4643 14.5835 11.6241 14.5479 11.759 14.4769C11.8951 14.4059 11.9999 14.3053 12.0733 14.1751C12.1467 14.0437 12.1834 13.8898 12.1834 13.7134L12.3325 13.7365H11.3453V13.2216H12.8208V13.6584C12.8208 13.9697 12.7545 14.239 12.6219 14.4663C12.4894 14.6935 12.3071 14.8687 12.0751 14.9918C11.8431 15.1138 11.5767 15.1747 11.2761 15.1747C10.9411 15.1747 10.6469 15.0996 10.3936 14.9492C10.1415 14.7977 9.94438 14.5829 9.80233 14.3047C9.66147 14.0253 9.59104 13.6939 9.59104 13.3104C9.59104 13.0168 9.63247 12.7546 9.71533 12.5238C9.79938 12.293 9.91656 12.0971 10.0669 11.9361C10.2172 11.7739 10.3936 11.6508 10.596 11.5668C10.7984 11.4815 11.0186 11.4389 11.2565 11.4389C11.4578 11.4389 11.6454 11.4685 11.8194 11.5277C11.9934 11.5857 12.1479 11.6686 12.2828 11.7763C12.4189 11.884 12.5308 12.0118 12.6184 12.1598C12.706 12.3078 12.7634 12.4711 12.7906 12.6499H12.1195Z" fill="white" />
+    <rect
+      width="15"
+      height="7.5"
+      transform="translate(0.25 9.375)"
+      fill="#F15642"
+    />
+    <path
+      d="M2.75954 15.125V11.4886H4.12318C4.40254 11.4886 4.63691 11.5407 4.82631 11.6449C5.01688 11.7491 5.1607 11.8923 5.25777 12.0746C5.35602 12.2557 5.40514 12.4616 5.40514 12.6925C5.40514 12.9257 5.35602 13.1328 5.25777 13.3139C5.15952 13.495 5.01452 13.6377 4.82275 13.7418C4.63099 13.8448 4.39484 13.8963 4.1143 13.8963H3.21054V13.3548H4.02552C4.18888 13.3548 4.32264 13.3263 4.4268 13.2695C4.53097 13.2127 4.60791 13.1346 4.65763 13.0352C4.70853 12.9357 4.73398 12.8215 4.73398 12.6925C4.73398 12.5634 4.70853 12.4498 4.65763 12.3516C4.60791 12.2533 4.53038 12.177 4.42503 12.1225C4.32086 12.0669 4.18651 12.0391 4.02197 12.0391H3.41828V15.125H2.75954ZM8.9656 11.4886V15.125H8.37966L6.66624 12.6481H6.63605V15.125H5.97732V11.4886H6.56681L8.27845 13.9673H8.31041V11.4886H8.9656ZM12.1195 12.6499C12.0899 12.554 12.049 12.4682 11.9969 12.3924C11.946 12.3155 11.8845 12.2498 11.8123 12.1953C11.7413 12.1409 11.6596 12.1 11.5672 12.0728C11.4749 12.0444 11.3743 12.0302 11.2654 12.0302C11.0701 12.0302 10.8961 12.0793 10.7434 12.1776C10.5907 12.2758 10.4705 12.4202 10.3829 12.6108C10.2965 12.8002 10.2533 13.031 10.2533 13.3033C10.2533 13.5779 10.2965 13.8105 10.3829 14.0011C10.4694 14.1916 10.5895 14.3366 10.7434 14.4361C10.8973 14.5343 11.076 14.5835 11.2796 14.5835C11.4643 14.5835 11.6241 14.5479 11.759 14.4769C11.8951 14.4059 11.9999 14.3053 12.0733 14.1751C12.1467 14.0437 12.1834 13.8898 12.1834 13.7134L12.3325 13.7365H11.3453V13.2216H12.8208V13.6584C12.8208 13.9697 12.7545 14.239 12.6219 14.4663C12.4894 14.6935 12.3071 14.8687 12.0751 14.9918C11.8431 15.1138 11.5767 15.1747 11.2761 15.1747C10.9411 15.1747 10.6469 15.0996 10.3936 14.9492C10.1415 14.7977 9.94438 14.5829 9.80233 14.3047C9.66147 14.0253 9.59104 13.6939 9.59104 13.3104C9.59104 13.0168 9.63247 12.7546 9.71533 12.5238C9.79938 12.293 9.91656 12.0971 10.0669 11.9361C10.2172 11.7739 10.3936 11.6508 10.596 11.5668C10.7984 11.4815 11.0186 11.4389 11.2565 11.4389C11.4578 11.4389 11.6454 11.4685 11.8194 11.5277C11.9934 11.5857 12.1479 11.6686 12.2828 11.7763C12.4189 11.884 12.5308 12.0118 12.6184 12.1598C12.706 12.3078 12.7634 12.4711 12.7906 12.6499H12.1195Z"
+      fill="white"
+    />
   </svg>
-)
+);
 
 export const ExcelIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M7.25 0C6.5625 0 6 0.534375 6 1.1875V17.8125C6 18.4656 6.5625 19 7.25 19H19.75C20.4375 19 21 18.4656 21 17.8125V4.75L16 0H7.25Z" fill="#CACACC" />
+  <svg
+    width="21"
+    height="20"
+    viewBox="0 0 21 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M7.25 0C6.5625 0 6 0.534375 6 1.1875V17.8125C6 18.4656 6.5625 19 7.25 19H19.75C20.4375 19 21 18.4656 21 17.8125V4.75L16 0H7.25Z"
+      fill="#CACACC"
+    />
     <g clip-path="url(#clip0_1646_2842)">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.25 1.74603V18.254C5.25 19.2183 6.05799 20 7.05469 20H19.1953C20.192 20 21 19.2183 21 18.254V4.59454C21 4.12814 20.8071 3.68112 20.4644 3.35314L17.4876 0.504633C17.1498 0.181331 16.6938 0 16.2186 0H7.05469C6.05799 0 5.25 0.781725 5.25 1.74603ZM6.39844 18.254V1.74603C6.39844 1.39537 6.69225 1.11111 7.05469 1.11111H15.9961V4.92064C15.9961 5.57812 16.547 6.11111 17.2266 6.11111H19.8516V18.254C19.8516 18.6046 19.5577 18.8889 19.1953 18.8889H7.05469C6.69225 18.8889 6.39844 18.6046 6.39844 18.254ZM19.8516 5V4.59454C19.8516 4.42494 19.7814 4.26239 19.6568 4.14312L17.1445 1.73909V4.92064C17.1445 4.96447 17.1813 5 17.2266 5H19.8516Z" fill="#9D9C9B" />
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.4531 8.20312C13.4531 7.90109 13.7102 7.65625 14.0273 7.65625H17.8008C18.1179 7.65625 18.375 7.90109 18.375 8.20312C18.375 8.50516 18.1179 8.75 17.8008 8.75H14.0273C13.7102 8.75 13.4531 8.50516 13.4531 8.20312Z" fill="#69C997" />
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.4531 10.7031C13.4531 10.4011 13.7102 10.1562 14.0273 10.1562H17.8008C18.1179 10.1562 18.375 10.4011 18.375 10.7031C18.375 11.0052 18.1179 11.25 17.8008 11.25H14.0273C13.7102 11.25 13.4531 11.0052 13.4531 10.7031Z" fill="#54AD7D" />
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.4531 13.2031C13.4531 12.9011 13.7102 12.6562 14.0273 12.6562H17.8008C18.1179 12.6562 18.375 12.9011 18.375 13.2031C18.375 13.5052 18.1179 13.75 17.8008 13.75H14.0273C13.7102 13.75 13.4531 13.5052 13.4531 13.2031Z" fill="#2B593D" />
-      <path d="M0 5.78125C0 5.26348 0.44072 4.84375 0.984375 4.84375H10.8281C11.3718 4.84375 11.8125 5.26348 11.8125 5.78125V15.1562C11.8125 15.674 11.3718 16.0938 10.8281 16.0938H0.984375C0.440719 16.0938 0 15.674 0 15.1562V5.78125Z" fill="#3D8A58" />
-      <path d="M3.28125 13.6072L5.12503 10.3387L3.45172 7.34375H4.72577L5.80692 9.35608L6.86563 7.34375H8.12622L6.45291 10.3857L8.29669 13.6072H6.98227L5.78448 11.441L4.5867 13.6072H3.28125Z" fill="white" />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M5.25 1.74603V18.254C5.25 19.2183 6.05799 20 7.05469 20H19.1953C20.192 20 21 19.2183 21 18.254V4.59454C21 4.12814 20.8071 3.68112 20.4644 3.35314L17.4876 0.504633C17.1498 0.181331 16.6938 0 16.2186 0H7.05469C6.05799 0 5.25 0.781725 5.25 1.74603ZM6.39844 18.254V1.74603C6.39844 1.39537 6.69225 1.11111 7.05469 1.11111H15.9961V4.92064C15.9961 5.57812 16.547 6.11111 17.2266 6.11111H19.8516V18.254C19.8516 18.6046 19.5577 18.8889 19.1953 18.8889H7.05469C6.69225 18.8889 6.39844 18.6046 6.39844 18.254ZM19.8516 5V4.59454C19.8516 4.42494 19.7814 4.26239 19.6568 4.14312L17.1445 1.73909V4.92064C17.1445 4.96447 17.1813 5 17.2266 5H19.8516Z"
+        fill="#9D9C9B"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M13.4531 8.20312C13.4531 7.90109 13.7102 7.65625 14.0273 7.65625H17.8008C18.1179 7.65625 18.375 7.90109 18.375 8.20312C18.375 8.50516 18.1179 8.75 17.8008 8.75H14.0273C13.7102 8.75 13.4531 8.50516 13.4531 8.20312Z"
+        fill="#69C997"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M13.4531 10.7031C13.4531 10.4011 13.7102 10.1562 14.0273 10.1562H17.8008C18.1179 10.1562 18.375 10.4011 18.375 10.7031C18.375 11.0052 18.1179 11.25 17.8008 11.25H14.0273C13.7102 11.25 13.4531 11.0052 13.4531 10.7031Z"
+        fill="#54AD7D"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M13.4531 13.2031C13.4531 12.9011 13.7102 12.6562 14.0273 12.6562H17.8008C18.1179 12.6562 18.375 12.9011 18.375 13.2031C18.375 13.5052 18.1179 13.75 17.8008 13.75H14.0273C13.7102 13.75 13.4531 13.5052 13.4531 13.2031Z"
+        fill="#2B593D"
+      />
+      <path
+        d="M0 5.78125C0 5.26348 0.44072 4.84375 0.984375 4.84375H10.8281C11.3718 4.84375 11.8125 5.26348 11.8125 5.78125V15.1562C11.8125 15.674 11.3718 16.0938 10.8281 16.0938H0.984375C0.440719 16.0938 0 15.674 0 15.1562V5.78125Z"
+        fill="#3D8A58"
+      />
+      <path
+        d="M3.28125 13.6072L5.12503 10.3387L3.45172 7.34375H4.72577L5.80692 9.35608L6.86563 7.34375H8.12622L6.45291 10.3857L8.29669 13.6072H6.98227L5.78448 11.441L4.5867 13.6072H3.28125Z"
+        fill="white"
+      />
     </g>
     <defs>
       <clipPath id="clip0_1646_2842">
@@ -373,18 +861,54 @@ export const ExcelIcon: React.FC<{ className?: string }> = ({ className }) => (
       </clipPath>
     </defs>
   </svg>
-)
+);
 
 export const WordIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M7.16667 0C6.525 0 6 0.534375 6 1.1875V17.8125C6 18.4656 6.525 19 7.16667 19H18.8333C19.475 19 20 18.4656 20 17.8125V4.75L15.3333 0H7.16667Z" fill="#CACACC" />
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M7.16667 0C6.525 0 6 0.534375 6 1.1875V17.8125C6 18.4656 6.525 19 7.16667 19H18.8333C19.475 19 20 18.4656 20 17.8125V4.75L15.3333 0H7.16667Z"
+      fill="#CACACC"
+    />
     <g clip-path="url(#clip0_1646_2863)">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M5 1.74603V18.254C5 19.2183 5.76951 20 6.71875 20H18.2812C19.2305 20 20 19.2183 20 18.254V4.59454C20 4.12814 19.8163 3.68112 19.4899 3.35314L16.6549 0.504633C16.3331 0.181331 15.8988 0 15.4463 0H6.71875C5.76951 0 5 0.781725 5 1.74603ZM6.09375 18.254V1.74603C6.09375 1.39537 6.37357 1.11111 6.71875 1.11111H15.2344V4.92064C15.2344 5.57812 15.759 6.11111 16.4062 6.11111H18.9062V18.254C18.9062 18.6046 18.6264 18.8889 18.2812 18.8889H6.71875C6.37357 18.8889 6.09375 18.6046 6.09375 18.254ZM18.9062 5V4.59454C18.9062 4.42494 18.8395 4.26239 18.7208 4.14312L16.3281 1.73909V4.92064C16.3281 4.96447 16.3631 5 16.4062 5H18.9062Z" fill="#9D9C9B" />
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8125 8.20312C12.8125 7.90109 13.0573 7.65625 13.3594 7.65625H16.9531C17.2552 7.65625 17.5 7.90109 17.5 8.20312C17.5 8.50516 17.2552 8.75 16.9531 8.75H13.3594C13.0573 8.75 12.8125 8.50516 12.8125 8.20312Z" fill="#6BB3EC" />
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8125 10.7031C12.8125 10.4011 13.0573 10.1562 13.3594 10.1562H16.9531C17.2552 10.1562 17.5 10.4011 17.5 10.7031C17.5 11.0052 17.2552 11.25 16.9531 11.25H13.3594C13.0573 11.25 12.8125 11.0052 12.8125 10.7031Z" fill="#508FD6" />
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8125 13.2031C12.8125 12.9011 13.0573 12.6562 13.3594 12.6562H16.9531C17.2552 12.6562 17.5 12.9011 17.5 13.2031C17.5 13.5052 17.2552 13.75 16.9531 13.75H13.3594C13.0573 13.75 12.8125 13.5052 12.8125 13.2031Z" fill="#3770C3" />
-      <path d="M0 5.78125C0 5.26348 0.419733 4.84375 0.9375 4.84375H10.3125C10.8303 4.84375 11.25 5.26348 11.25 5.78125V15.1562C11.25 15.674 10.8303 16.0938 10.3125 16.0938H0.9375C0.419733 16.0938 0 15.674 0 15.1562V5.78125Z" fill="#3770C3" />
-      <path d="M3.4137 13.4509L2.1875 7.1875H3.25134L4.02039 11.4899L4.96033 7.1875H6.19507L7.09656 11.5625L7.88696 7.1875H8.92944L7.68188 13.4509H6.57959L5.5542 8.76831L4.53735 13.4509H3.4137Z" fill="white" />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M5 1.74603V18.254C5 19.2183 5.76951 20 6.71875 20H18.2812C19.2305 20 20 19.2183 20 18.254V4.59454C20 4.12814 19.8163 3.68112 19.4899 3.35314L16.6549 0.504633C16.3331 0.181331 15.8988 0 15.4463 0H6.71875C5.76951 0 5 0.781725 5 1.74603ZM6.09375 18.254V1.74603C6.09375 1.39537 6.37357 1.11111 6.71875 1.11111H15.2344V4.92064C15.2344 5.57812 15.759 6.11111 16.4062 6.11111H18.9062V18.254C18.9062 18.6046 18.6264 18.8889 18.2812 18.8889H6.71875C6.37357 18.8889 6.09375 18.6046 6.09375 18.254ZM18.9062 5V4.59454C18.9062 4.42494 18.8395 4.26239 18.7208 4.14312L16.3281 1.73909V4.92064C16.3281 4.96447 16.3631 5 16.4062 5H18.9062Z"
+        fill="#9D9C9B"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M12.8125 8.20312C12.8125 7.90109 13.0573 7.65625 13.3594 7.65625H16.9531C17.2552 7.65625 17.5 7.90109 17.5 8.20312C17.5 8.50516 17.2552 8.75 16.9531 8.75H13.3594C13.0573 8.75 12.8125 8.50516 12.8125 8.20312Z"
+        fill="#6BB3EC"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M12.8125 10.7031C12.8125 10.4011 13.0573 10.1562 13.3594 10.1562H16.9531C17.2552 10.1562 17.5 10.4011 17.5 10.7031C17.5 11.0052 17.2552 11.25 16.9531 11.25H13.3594C13.0573 11.25 12.8125 11.0052 12.8125 10.7031Z"
+        fill="#508FD6"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M12.8125 13.2031C12.8125 12.9011 13.0573 12.6562 13.3594 12.6562H16.9531C17.2552 12.6562 17.5 12.9011 17.5 13.2031C17.5 13.5052 17.2552 13.75 16.9531 13.75H13.3594C13.0573 13.75 12.8125 13.5052 12.8125 13.2031Z"
+        fill="#3770C3"
+      />
+      <path
+        d="M0 5.78125C0 5.26348 0.419733 4.84375 0.9375 4.84375H10.3125C10.8303 4.84375 11.25 5.26348 11.25 5.78125V15.1562C11.25 15.674 10.8303 16.0938 10.3125 16.0938H0.9375C0.419733 16.0938 0 15.674 0 15.1562V5.78125Z"
+        fill="#3770C3"
+      />
+      <path
+        d="M3.4137 13.4509L2.1875 7.1875H3.25134L4.02039 11.4899L4.96033 7.1875H6.19507L7.09656 11.5625L7.88696 7.1875H8.92944L7.68188 13.4509H6.57959L5.5542 8.76831L4.53735 13.4509H3.4137Z"
+        fill="white"
+      />
     </g>
     <defs>
       <clipPath id="clip0_1646_2863">
@@ -392,7 +916,7 @@ export const WordIcon: React.FC<{ className?: string }> = ({ className }) => (
       </clipPath>
     </defs>
   </svg>
-)
+);
 
 const iconMap: Record<string, React.FC<{ className?: string }>> = {
   pdf: PdfIcon,
@@ -402,52 +926,65 @@ const iconMap: Record<string, React.FC<{ className?: string }>> = {
   xlsx: ExcelIcon,
 };
 
-export const DocumentIconByExtension: React.FC<{ filePath: string; className?: string }> = ({ filePath, className }) => {
-  const extension = filePath.split('.').pop()?.toLowerCase() || '';
+export const DocumentIconByExtension: React.FC<{
+  filePath: string;
+  className?: string;
+}> = ({ filePath, className }) => {
+  const extension = filePath.split(".").pop()?.toLowerCase() || "";
   const IconComponent = iconMap[extension] || PdfIcon;
   return <IconComponent className={className} />;
 };
 
-export const UpcomingVendorsIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <div className="group relative">
+export const VendorMainICon: React.FC<IconProps> = ({
+  className,
+  strokeColor = MAIN_STROKE,
+}) => (
+  <div className="group relative w-6 h-6 flex items-center justify-center">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      className={`w-6 h-6 transition-all duration-300 group-hover:scale-110 ${className}`}
+      width={MAIN_ICON_SIZE}
+      height={MAIN_ICON_SIZE}
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 transform-gpu origin-center group-hover:scale-110 ${className}`}
     >
-      <defs>
-        <linearGradient id="upcomingVendorsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-           <stop offset="0%" stopColor="#14B8A6" /> 
-          <stop offset="100%" stopColor="#0D9488" />
-        </linearGradient>
-        <filter id="upcomingVendorsShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#F59E0B" floodOpacity="0.3" />
-        </filter>
-      </defs>
-
-      <rect
-        x="3"
-        y="4"
-        width="18"
-        height="17"
-        rx="2"
-        ry="2"
-        fill="url(#upcomingVendorsGradient)"
-        filter="url(#upcomingVendorsShadow)"
-      />
-      <line x1="3" y1="9" x2="21" y2="9" stroke="#fff" strokeWidth="1.5" />
-      <line x1="8" y1="2" x2="8" y2="6" stroke="#fff" strokeWidth="1.5" />
-      <line x1="16" y1="2" x2="16" y2="6" stroke="#fff" strokeWidth="1.5" />
-
-      <circle cx="8" cy="13" r="1" fill="#fff" />
-      <circle cx="12" cy="13" r="1" fill="#fff" />
-      <circle cx="16" cy="13" r="1" fill="#fff" />
-      <circle cx="8" cy="17" r="1" fill="#fff" />
-      <circle cx="12" cy="17" r="1" fill="#fff" />
+      <path d="M16.051 12.616a1 1 0 0 1 1.909.024l.737 1.452a1 1 0 0 0 .737.535l1.634.256a1 1 0 0 1 .588 1.806l-1.172 1.168a1 1 0 0 0-.282.866l.259 1.613a1 1 0 0 1-1.541 1.134l-1.465-.75a1 1 0 0 0-.912 0l-1.465.75a1 1 0 0 1-1.539-1.133l.258-1.613a1 1 0 0 0-.282-.866l-1.156-1.153a1 1 0 0 1 .572-1.822l1.633-.256a1 1 0 0 0 .737-.535z" />
+      <path d="M8 15H7a4 4 0 0 0-4 4v2" />
+      <circle cx="10" cy="7" r="4" />
     </svg>
+  </div>
+);
 
+export const ClipboardMainIcon: React.FC<IconProps> = ({
+  className,
+  strokeColor = MAIN_STROKE,
+}) => (
+  <div className="group relative w-6 h-6 flex items-center justify-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={MAIN_ICON_SIZE}
+      height={MAIN_ICON_SIZE}
+      fill="none"
+      stroke={strokeColor}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`transition-transform duration-300 transform-gpu origin-center group-hover:scale-110 ${className}`}
+    >
+      <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4" />
+      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+      <path d="M3 15h6" />
+      <path d="M6 12v6" />
+    </svg>
     <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-      Upcoming<br></br> Tendors
+      RFP Requests
     </div>
   </div>
 );
+
+

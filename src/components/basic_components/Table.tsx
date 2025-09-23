@@ -31,7 +31,6 @@ interface TableProps extends Partial<IDot> {
   subtitle: string;
   NoDataTitle?: string;
   NoDataDescription?: string;
-  IsButton: boolean;
   IsIcon: boolean;
 }
 
@@ -56,7 +55,6 @@ const Table: React.FC<TableProps> = ({
   subtitle,
   NoDataTitle,
   NoDataDescription,
-  IsButton,
   IsIcon,
   type,
 }) => {
@@ -334,12 +332,7 @@ const Table: React.FC<TableProps> = ({
                           "No RFP requests have been published yet. Create your first RFP to get started."}
                       </p>
                     </div>
-                    {IsButton && (
-                      <button className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
-                        <span className="mr-2">➕</span>
-                        Create New RFP
-                      </button>
-                    )}
+                    
                   </div>
                 </td>
               </tr>

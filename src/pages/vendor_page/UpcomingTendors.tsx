@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import CommonTitleCard from "../../components/basic_components/CommonTitleCard";
 import Table from "../../components/basic_components/Table";
 import {
@@ -30,7 +30,6 @@ type VendorColumnKeys =
   | "categoryID";
 
 const UpcomingTendors = () => {
-  const [tableName, setTableName] = useState("");
   const columns = [
     "title",
     "description",
@@ -45,7 +44,6 @@ const UpcomingTendors = () => {
     categoryID: "Category ID",
   };
 
-  const [totalTendorrequest, setTotalTendorrequest] = useState<IUTendors[]>([]);
   const [tendorlist, setTendorlist] = useState<IUTendors[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -127,16 +125,16 @@ const UpcomingTendors = () => {
       <CommonTitleCard />
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Header Section */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-8">
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-[#1365AA] rounded-2xl flex items-center justify-center shadow-lg">
                 <span className="text-white text-2xl font-bold">⏳</span>
               </div>
               <div>
-                <h1 className="text-heading-2">Upcoming Tendors</h1>
+                <h1 className="text-heading-2">Upcoming Tenders</h1>
                 <p className="text-body-small text-muted mt-1">
-                  Manage your upcoming vendor partners
+                  Manage your upcoming tender partners
                 </p>
               </div>
             </div>
@@ -149,7 +147,7 @@ const UpcomingTendors = () => {
         {/* Table Section */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
           <Table
-            title={tableName || ""}
+            title={""}
             columns={columns}
             columnLabels={vendor_column_labels}
             subtitle={""}
@@ -164,7 +162,6 @@ const UpcomingTendors = () => {
             NoDataDescription={
               "No upcoming tenders are available yet. Create upcoming tenders as per your requirement."
             }
-            IsButton={false}
             IsIcon={false}
             dots={true}
             setDeleteOption={(item: IUTendors) => handleDeleteTender(item)}
