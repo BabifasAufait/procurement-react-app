@@ -20,6 +20,7 @@ import { convertCurrencyLabel, getUserCredentials } from "../../utils/common";
 import CommonTitleCard from "../../components/basic_components/CommonTitleCard";
 import { IRfp } from "../../types/rfpTypes";
 import RfpFilterModal from "../../components/rfp_request/RfpFilterModal";
+import { ClipboardMainIcon } from "../../utils/Icons";
 
 const tempfilter = {
   fields: [],
@@ -58,6 +59,7 @@ function RequestPage() {
     rfp: IRfp;
   } | null>(null);
   const [filterModalOpen, setFilterModal] = useState<boolean>(false);
+  const [subtitle, setsubTitle] = useState("");
   const navigate = useNavigate();
 
   // const requestStatuses = [
@@ -111,6 +113,7 @@ function RequestPage() {
         // setHideDepartment(true);
         // setHideStatus(false)
         filterdata = { ...filterdata, fields: [] };
+        setsubTitle("View all available Requests for Proposals in the system.");
       } else if (tab == "My RFPs") {
         setColumns(commonColumns);
         // setHideDepartment(false);
@@ -124,6 +127,7 @@ function RequestPage() {
             },
           ],
         };
+        setsubTitle("Track and manage the RFPs you have created.");
       } else if (tab == "Assigned") {
         setColumns(commonColumns);
         // setHideDepartment(false);
@@ -132,6 +136,7 @@ function RequestPage() {
           ...filterdata,
           fields: [{ columnName: "assigned_rfps", value: true }],
         };
+        setsubTitle("Review and work on RFPs assigned to you.");
       } else {
         return;
         //setColumns(columns.filter(x=>x!="capexId"));
@@ -147,6 +152,7 @@ function RequestPage() {
             },
           ],
         };
+        setsubTitle("Access and edit your saved draft RFPs before submission.");
       }
       setDefaultFilter(filterdata);
       setTableName(tab);
@@ -231,11 +237,11 @@ function RequestPage() {
         {!showLoader ? (
           <>
             {/* Header Section */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-8">
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <span className="text-white text-2xl font-bold">📋</span>
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-[#1365AA] rounded-xl flex items-center justify-center shadow-lg">
+                    <span className="text-white text-2xl font-bold"><ClipboardMainIcon/></span>
                   </div>
                   <div>
                     <h1 className="text-heading-2">RFPs</h1>
@@ -245,7 +251,7 @@ function RequestPage() {
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="px-6 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                  <div className="px-4 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-md border border-blue-200">
                     <span className="text-button text-accent">
                       {rfpRequests.length} Total RFPs
                     </span>
@@ -255,7 +261,7 @@ function RequestPage() {
               </div>
             </div>
             {/* Tab Navigation */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-8">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 mb-4">
               <div className="flex items-center space-x-8">
                 {tabs.map((tab, index) => (
                   <div key={tab} className="flex items-center">
@@ -263,7 +269,7 @@ function RequestPage() {
                       onClick={() => setupTab(tab)}
                       className={`relative px-6 py-3 text-button rounded-lg transition-all duration-200 ${
                         statusFilter === tab
-                          ? "bg-gradient-to-r from-blue-500 to-purple-600 !text-white shadow-lg transform -translate-y-0.5"
+                          ? "bg-gradient-to-r from-blue-400 to-[#1365AA] !text-white shadow-lg transform -translate-y-0.5"
                           : "text-muted hover:text-slate-900 hover:bg-gray-50"
                       }`}
                     >
@@ -286,10 +292,9 @@ function RequestPage() {
                 filter={filter}
                 setFilter={setFilter}
                 title={tableName || "All requests"}
-                subtitle={"Manage and view your RFP requests"}
+                subtitle={ subtitle || "Manage and view your RFP requests"}
                 setIsSortModalOpen={setIsSortModalOpen}
                 columns={columns}
-                IsButton={true}
                 items={rfpRequests || []}
                 columnLabels={rfp_column_labels}
                 setIsFilterModalOpen={setFilterModal}
@@ -302,7 +307,7 @@ function RequestPage() {
                 setEditOption={(user) => handleThreeDots("edit", user)}
                 setDeleteOption={(user) => handleThreeDots("delete", user)}
                 setBlockOption={(user) => handleThreeDots("block", user)}
-                IsIcon={true}
+                IsIcon={false}
               />
             </div>
 
