@@ -7,6 +7,7 @@ export interface IProcurementItem {
 
 export interface IRfp {
     id?: number
+    createdBy?:number
     rfpTitle?: string
     rfpDescription?: string
     buyerName?: string

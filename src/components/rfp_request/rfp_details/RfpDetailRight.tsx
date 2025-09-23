@@ -86,8 +86,8 @@ const RfpDetailRight: React.FC<IRfpDetailRight> = ({ rfp, trigger,vendorProposal
 
     const maskedProposals = vendorProposals.map((p) => ({
         ...p,
-        bidAmount: ownerIn.commercial ? p.bidAmount : "*******",
-        bidValidity: ownerIn.commercial ? p.bidValidity : "*******",
+        bidAmount: ownerIn.commercial || rfp?.createdBy?.toString() == getUserCredentials().userId ? p.bidAmount : "*******",
+        bidValidity: ownerIn.commercial || rfp?.createdBy?.toString() == getUserCredentials().userId ? p.bidValidity : "*******",
     }));
 
     const tabs = ["Proposals", "Clarifications"];
