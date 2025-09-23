@@ -250,6 +250,8 @@ const RfpDetailRight: React.FC<IRfpDetailRight> = ({ rfp, trigger,vendorProposal
                                         setFilter={setFilter}
                                         setSearchQuery={setSearchQuery}
                                         totalCount={10}
+                                        IsIcon={false}
+                                        subtitle=''
                                     />
                                 </>
                             }
