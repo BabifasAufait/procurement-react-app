@@ -19,6 +19,7 @@ import VendorDetailPage from '../pages/vendor_detail/VendorDetailPage';
 import RfpPublishPage from '../pages/rfp_publish/RfpPublishPage';
 import UserProfilePage from '../pages/profile/UserProfilePage';
 import RfpDecisionForm from '../pages/rfp_decision_form/RfpDecisionForm';
+import UpcomingTendors from '../pages/vendor_page/UpcomingTendors';
 
 interface procurementContextProp {
   countryCodes: ICountryCode[] | null;
@@ -144,6 +145,7 @@ const RouteComponent: React.FC = () => {
                     <Route path="/settings/roles-managment" element={<SettingsPage />} />
                     <Route path="/settings/criteria-managment" element={<SettingsPage />} />
                     <Route path="/profile" element={<UserProfilePage/>} />
+                    <Route path="/upcoming-vendors" element={<UpcomingTendors/>} />
                   </Routes>
                 ) : (
                   <div className="flex items-center justify-center h-full">

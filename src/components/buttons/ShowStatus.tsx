@@ -3,7 +3,7 @@ import { projectStatuses, rfpStatuses } from '../../utils/constants';
 
 interface ShowStatusProps {
   status: number;
-  type: 'proposal' | 'vendors' | 'rfps';
+  type: 'proposal' | 'vendors' | 'rfps' | 'tendors';
 }
 
 const ShowStatus: React.FC<ShowStatusProps> = ({ status, type }) => {

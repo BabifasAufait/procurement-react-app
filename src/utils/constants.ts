@@ -67,6 +67,11 @@ export const vendor_sorting_fields = {
     status: 'Status',
 }
 
+export const upcoming_tendor_sorting_fields = {
+    Title: 'Title',
+    publishingDate: 'Tender Publishing Date',
+}
+
 export const project_sorting_fields = {
     projectId: 'ID',
     projectName: 'Project Name',

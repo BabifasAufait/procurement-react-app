@@ -357,6 +357,9 @@ function Dashboard() {
                       type="rfps" 
                       rowNavigationPath="rfps" 
                       trigger={() => setTrigger(true)}
+                      subtitle={"Manage and view your RFP requests"}
+                      IsButton={true}
+                      IsIcon={true}
                     />
                   </div>
                 </div>
