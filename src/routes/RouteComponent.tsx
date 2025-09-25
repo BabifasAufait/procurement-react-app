@@ -20,6 +20,13 @@ import RfpPublishPage from '../pages/rfp_publish/RfpPublishPage';
 import UserProfilePage from '../pages/profile/UserProfilePage';
 import RfpDecisionForm from '../pages/rfp_decision_form/RfpDecisionForm';
 import UpcomingTendors from '../pages/vendor_page/UpcomingTendors';
+import {
+  HubConnection,
+  HubConnectionBuilder,
+  LogLevel,
+} from "@microsoft/signalr";
+import { Urls } from '../services/ApiConfig';
+import { getAllNotificationsAsync } from '../services/notificationService';
 
 interface procurementContextProp {
   countryCodes: ICountryCode[] | null;
@@ -40,6 +47,8 @@ const RouteComponent: React.FC = () => {
   // TODO: Update this state via Login component or auth system
   const [userLoggedIn, setUserLoggedIn] = useState(true);
   const [_, setUserInfo] = useState({ name: "" });
+  const [connection, setConnection] = useState<HubConnection | null>(null);
+  const [notifications, setNotifications] = useState<any[]>([]);
 
   const navigate = useNavigate();
   // Update isMobile based on window resize
@@ -49,10 +58,10 @@ const RouteComponent: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-    // setup common datas like expendituretypes, departments
+  // setup common datas like expendituretypes, departments
   async function setupCommonDatas(clientId: string) {
     try {
-      console.log(clientId,"clientId");
+      console.log(clientId, "clientId");
       let countryCodesData = await getAllCountryCodes();
       setCountryCodes(countryCodesData?.sort((a: any, b: any) => (a.countryCode ?? "").localeCompare(b.countryCode ?? "")) || []);
 
@@ -60,6 +69,48 @@ const RouteComponent: React.FC = () => {
       console.error("route", e);
     }
   }
+
+  const initializeSignalR = async () => {
+    let token = Cookies.get("token");
+    if (connection || !token) return; // Prevent multiple connections
+
+    const conn = new HubConnectionBuilder()
+      .withUrl(`${Urls.defaultUrl}/notifications`, {
+        accessTokenFactory: () => token,
+      })
+      .configureLogging(LogLevel.Information)
+      .withAutomaticReconnect()
+      .build();
+
+    conn.on("ReceivedMessage", (_, notification) => {
+      console.log("📩 Notification received:", notification);
+      setNotifications((prev) => [notification, ...prev]);
+    });
+
+    conn.onclose(() => console.warn("🔴 SignalR connection closed."));
+    conn.onreconnecting(() => console.warn("🟡 SignalR reconnecting..."));
+    conn.onreconnected(() => console.log("🟢 SignalR reconnected."));
+
+    try {
+      await conn.start();
+      console.log("connection established.");
+      setConnection(conn);
+      // joinGroup(conn); // Ensure group join after successful connection
+    } catch (error) {
+      console.error("❌ Error establishing connection:");
+    }
+  };
+
+  const setUpOldNotifications = async () => {
+    await initializeSignalR();
+    const notifications = await getAllNotificationsAsync();
+    setNotifications(notifications);
+  }
+
+  useEffect(() => {
+    if (userLoggedIn)
+      setUpOldNotifications();
+  }, [userLoggedIn])
 
   useEffect(() => {
     let isTokenExist = Cookies.get("token");
@@ -79,86 +130,86 @@ const RouteComponent: React.FC = () => {
     <div className="w-full h-full">
       {/* <ErrorBoundary> */}
       <procurementContext.Provider value={{ countryCodes }}>
-      <Routes>
-        {/* Login Route */}
-        <Route
-          path="/login"
-          element={
-            <div className="w-full">
-              <Login setUserLoggedIn={setUserLoggedIn}/>
-            </div>
-          }
-        />
-
-        <Route
-          path="/register"
-          element={
-            <div className="w-full">
-              <Register />
-            </div>
-          }
-        />
-
-        <Route
-          path="/forgot-password"
-          element={
-            <div className="w-full">
-              <ForgotPassPage />
-            </div>
-          }
-        />
-        <Route
-          path="/reset-password"
-          element={
-            <div className="w-full">
-              <ResetPassPage />
-            </div>
-          }
-        />
-        {/* Authenticated Routes with Sidebar/Navbar */}
-        <Route
-          path="*"
-          element={
-            <div className="flex min-h-screen">
-              {isMobile ? <Navbar notifications={[]} trigger={()=>{}}/> : <Sidebar notifications={[]} trigger={()=>{}}/>}
-              <div
-                className={`flex-1 min-h-screen bg-bgBlue ${isMobile ? 'mt-20' : 'ml-[78px]'
-                  }`}
-              >
-                {userLoggedIn ? (
-                  <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/rfps" element={<RequestPage />} />
-                    <Route path="/rfps/publish-rfps" element={<RfpPublishPage />} />
-                    <Route path="/rfps/:id" element={<RequestDetailPage />} />
-                    <Route path="/rfps/create-rfp" element={<RfpRequestFormComponent />} />
-                    <Route path="/rfps/edit-rfp/:id" element={<RfpRequestFormComponent type='edit' />} />
-                    <Route path="/rfps/decision-form" element={<RfpDecisionForm type='create'/>} />
-                    <Route path="/rfps/:rfpId/decision-form" element={<RfpDecisionForm type='create'/>} />
-                    <Route path="/rfps/:rfpId/decision-form/edit" element={<RfpDecisionForm type='edit'/>} />
-                    <Route path="/vendors" element={<VendorPage />} />
-                    <Route path="/vendors/:id" element={<VendorDetailPage />} />
-                    <Route path="/settings/user-managment" element={<SettingsPage />} />
-                    <Route path="/settings/category-managment" element={<SettingsPage />} />
-                    <Route path="/settings/department-managment" element={<SettingsPage />} />
-                    <Route path="/settings/workflow-managment" element={<SettingsPage />} />
-                    <Route path="/settings/roles-managment" element={<SettingsPage />} />
-                    <Route path="/settings/criteria-managment" element={<SettingsPage />} />
-                    <Route path="/profile" element={<UserProfilePage/>} />
-                    <Route path="/upcoming-vendors" element={<UpcomingTendors/>} />
-                  </Routes>
-                ) : (
-                  <div className="flex items-center justify-center h-full">
-                    <p className="text-gray-500">
-                      Please log in to access the procurement system
-                    </p>
-                  </div>
-                )}
+        <Routes>
+          {/* Login Route */}
+          <Route
+            path="/login"
+            element={
+              <div className="w-full">
+                <Login setUserLoggedIn={setUserLoggedIn} />
               </div>
-            </div>
-          }
-        />
-      </Routes>
+            }
+          />
+
+          <Route
+            path="/register"
+            element={
+              <div className="w-full">
+                <Register />
+              </div>
+            }
+          />
+
+          <Route
+            path="/forgot-password"
+            element={
+              <div className="w-full">
+                <ForgotPassPage />
+              </div>
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <div className="w-full">
+                <ResetPassPage />
+              </div>
+            }
+          />
+          {/* Authenticated Routes with Sidebar/Navbar */}
+          <Route
+            path="*"
+            element={
+              <div className="flex min-h-screen">
+                {isMobile ? <Navbar notifications={notifications} trigger={() => { }} /> : <Sidebar notifications={notifications} trigger={() => { }} />}
+                <div
+                  className={`flex-1 min-h-screen bg-bgBlue ${isMobile ? 'mt-20' : 'ml-[78px]'
+                    }`}
+                >
+                  {userLoggedIn ? (
+                    <Routes>
+                      <Route path="/" element={<Dashboard />} />
+                      <Route path="/rfps" element={<RequestPage />} />
+                      <Route path="/rfps/publish-rfps" element={<RfpPublishPage />} />
+                      <Route path="/rfps/:id" element={<RequestDetailPage />} />
+                      <Route path="/rfps/create-rfp" element={<RfpRequestFormComponent />} />
+                      <Route path="/rfps/edit-rfp/:id" element={<RfpRequestFormComponent type='edit' />} />
+                      <Route path="/rfps/decision-form" element={<RfpDecisionForm type='create' />} />
+                      <Route path="/rfps/:rfpId/decision-form" element={<RfpDecisionForm type='create' />} />
+                      <Route path="/rfps/:rfpId/decision-form/edit" element={<RfpDecisionForm type='edit' />} />
+                      <Route path="/vendors" element={<VendorPage />} />
+                      <Route path="/vendors/:id" element={<VendorDetailPage />} />
+                      <Route path="/settings/user-managment" element={<SettingsPage />} />
+                      <Route path="/settings/category-managment" element={<SettingsPage />} />
+                      <Route path="/settings/department-managment" element={<SettingsPage />} />
+                      <Route path="/settings/workflow-managment" element={<SettingsPage />} />
+                      <Route path="/settings/roles-managment" element={<SettingsPage />} />
+                      <Route path="/settings/criteria-managment" element={<SettingsPage />} />
+                      <Route path="/profile" element={<UserProfilePage />} />
+                      <Route path="/upcoming-vendors" element={<UpcomingTendors />} />
+                    </Routes>
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <p className="text-gray-500">
+                        Please log in to access the procurement system
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            }
+          />
+        </Routes>
       </procurementContext.Provider>
       {/* </ErrorBoundary> */}
     </div>
