@@ -4,6 +4,7 @@ import ShowStatus from "../buttons/ShowStatus";
 // import { getCapexRequestsFilterAsync } from "../../services/capexService";
 import { IModalProps, INotificationItem } from "../../types/commonTypes";
 import { convertCurrencyLabel } from "../../utils/common";
+import { deleteNotificationAsync, updateNotificationAsync } from "../../services/notificationService";
 
 interface INotificationContent extends IModalProps {
   data?: INotificationItem[]; // Optional prop to receive data from parent
@@ -30,7 +31,7 @@ const NotificationContent: React.FC<INotificationContent> = ({ data, closeModal,
     try {
       console.log(index);
       setEnableOptions(null);
-      //await deleteNotificationAsync([filteredNotifications[index].id])
+      await deleteNotificationAsync([filteredNotifications[index].id])
       console.log("deleted");
       trigger();
     } catch (err) {
@@ -44,9 +45,9 @@ const NotificationContent: React.FC<INotificationContent> = ({ data, closeModal,
     //   markAsRead(notification.id);
     // }
     notification.isRead = true;
-    //await updateNotificationAsync(notification.id, notification)
+    await updateNotificationAsync(notification.id, notification)
     // Navigate to the capex request detail page
-    navigate(`/request/${notification.capexRequestId}`);
+    navigate(`/${notification.notificationType}/${notification.uniqueId}`);
     closeModal()
   };
 
@@ -107,31 +108,28 @@ const NotificationContent: React.FC<INotificationContent> = ({ data, closeModal,
         <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
           <button
             onClick={() => handleFilterChange('all')}
-            className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-              filter === 'all'
-                ? "bg-white text-blue-600 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
-            }`}
+            className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${filter === 'all'
+              ? "bg-white text-blue-600 shadow-sm"
+              : "text-gray-600 hover:text-gray-900"
+              }`}
           >
             All
           </button>
           <button
             onClick={() => handleFilterChange('unread')}
-            className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-              filter === 'unread'
-                ? "bg-white text-blue-600 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
-            }`}
+            className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${filter === 'unread'
+              ? "bg-white text-blue-600 shadow-sm"
+              : "text-gray-600 hover:text-gray-900"
+              }`}
           >
             Unread
           </button>
           <button
             onClick={() => handleFilterChange('read')}
-            className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
-              filter === 'read'
-                ? "bg-white text-blue-600 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
-            }`}
+            className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${filter === 'read'
+              ? "bg-white text-blue-600 shadow-sm"
+              : "text-gray-600 hover:text-gray-900"
+              }`}
           >
             Read
           </button>
@@ -159,19 +157,17 @@ const NotificationContent: React.FC<INotificationContent> = ({ data, closeModal,
             {filteredNotifications.map((notification, i) => (
               <div
                 key={notification.id}
-                className={`group relative bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 cursor-pointer ${
-                  !notification.isRead ? 'ring-2 ring-blue-100 bg-blue-50/30' : ''
-                }`}
+                className={`group relative bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 cursor-pointer ${!notification.isRead ? 'ring-2 ring-blue-100 bg-blue-50/30' : ''
+                  }`}
                 onClick={() => { enableOptions == null && handleNotificationClick(notification) }}
               >
                 <div className="p-4">
                   <div className="flex items-start space-x-3">
                     {/* Notification Icon */}
-                    <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
-                      !notification.isRead 
-                        ? 'bg-blue-100 text-blue-600' 
-                        : 'bg-gray-100 text-gray-500'
-                    }`}>
+                    <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${!notification.isRead
+                      ? 'bg-blue-100 text-blue-600'
+                      : 'bg-gray-100 text-gray-500'
+                      }`}>
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
@@ -186,28 +182,28 @@ const NotificationContent: React.FC<INotificationContent> = ({ data, closeModal,
                               <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                             )}
                             <h4 className="text-sm font-semibold text-gray-900 truncate">
-                              {notification.projectName && notification.projectName.length > 30 
-                                ? `${notification.projectName.slice(0, 30)}...` 
-                                : notification.projectName}
+                              {notification.title}
                             </h4>
                           </div>
-                          
+
                           <div className="flex items-center space-x-2 text-xs text-gray-500 mb-2">
                             <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
-                              {notification.expenditureType}
+                              {notification.description && notification.description.length > 150
+                                ? `${notification.description.slice(0, 150)}...`
+                                : notification.description}
                             </span>
-                            <span>•</span>
-                            <span>{notification.departmentName}</span>
+                            {/* <span>•</span>
+                            <span>{notification.status}</span> */}
                           </div>
 
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
                               <span className="text-xs text-gray-500">
-                                {new Date(notification.updatedAt).toLocaleDateString()}
+                                {new Date(notification.createdAt).toLocaleDateString()}
                               </span>
-                              <span className="text-xs font-medium text-green-600">
+                              {/* <span className="text-xs font-medium text-green-600">
                                 {convertCurrencyLabel(notification.currency || "USD")} {notification.estimatedBudget?.toLocaleString()}
-                              </span>
+                              </span> */}
                             </div>
                             <div className="flex items-center space-x-2">
                               <ShowStatus status={Number(notification.status)} type="rfps" />
@@ -228,11 +224,10 @@ const NotificationContent: React.FC<INotificationContent> = ({ data, closeModal,
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                             </svg>
                           </button>
-                          
+
                           {/* Dropdown Menu */}
-                          <div className={`absolute right-0 top-8 bg-white border border-gray-200 rounded-lg shadow-lg py-1 z-10 ${
-                            i === enableOptions ? "block" : "hidden"
-                          }`}>
+                          <div className={`absolute right-0 top-8 bg-white border border-gray-200 rounded-lg shadow-lg py-1 z-10 ${i === enableOptions ? "block" : "hidden"
+                            }`}>
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
