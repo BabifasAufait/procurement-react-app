@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ShowStatus from "../buttons/ShowStatus";
 // import { getCapexRequestsFilterAsync } from "../../services/capexService";
 import { IModalProps, INotificationItem } from "../../types/commonTypes";
-import { convertCurrencyLabel } from "../../utils/common";
+// import { convertCurrencyLabel } from "../../utils/common";
 import { deleteNotificationAsync, updateNotificationAsync } from "../../services/notificationService";
 
 interface INotificationContent extends IModalProps {
@@ -80,7 +80,7 @@ const NotificationContent: React.FC<INotificationContent> = ({ data, closeModal,
   });
 
   return (
-    <div className="w-full h-full flex flex-col bg-gradient-to-br from-gray-50 to-white" style={{ minWidth: "450px" }}>
+    <div className="w-full h-full flex flex-col bg-gradient-to-br from-gray-50 to-white" style={{ minWidth: "450px", width:"500px" }}>
       {/* Modern Header */}
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="flex items-center justify-between">
@@ -205,9 +205,9 @@ const NotificationContent: React.FC<INotificationContent> = ({ data, closeModal,
                                 {convertCurrencyLabel(notification.currency || "USD")} {notification.estimatedBudget?.toLocaleString()}
                               </span> */}
                             </div>
-                            <div className="flex items-center space-x-2">
+                            {/* <div className="flex items-center space-x-2">
                               <ShowStatus status={Number(notification.status)} type="rfps" />
-                            </div>
+                            </div> */}
                           </div>
                         </div>
 
